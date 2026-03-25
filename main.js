@@ -666,25 +666,28 @@ async function loadDynamicData() {
             // --- KONTEN UTAMA (FEATURED GRID) ---
             const kontenUtamaContainer = document.getElementById('kontenUtamaGrid');
             if (kontenUtamaContainer && isIndex) {
-                const featuredData = pubBerita[0];
-                const sideDataList = pubBerita.slice(1, 4);
+                // Fetch video_reels specifically for this section
+                let videos = [];
+                try { videos = await SupaDB.fetchConfig('video_reels') || []; } catch(e){}
+                const pubVideos = videos.filter(v => v.aktif !== false);
+                
+                const featuredData = pubVideos[0];
+                const sideDataList = pubVideos.slice(1, 4);
 
                 if (featuredData) {
-                    const fImgArr = featuredData.images || featuredData.foto || [];
-                    const fThumb = (fImgArr.length > 0) ? fImgArr[0] : (featuredData.thumbnail || '');
+                    const fThumb = featuredData.thumbnail || '';
                     const hasFImg = !!fThumb;
                     
                     const featuredHTML = `
-                        <a href="javascript:void(0)" class="konten-featured" data-berita-id="${featuredData.id}">
+                        <a href="${featuredData.url || '#'}" target="_blank" rel="noopener" class="konten-featured">
                             <div class="konten-featured-img">
-                                ${hasFImg ? `<img src="${fThumb}" alt="${escapeHtml(featuredData.judul)}" loading="lazy" onerror="this.parentElement.style.display='none'">` : '<i class="fa-solid fa-newspaper" style="color:var(--gold);font-size:4rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"></i>'}
+                                ${hasFImg ? `<img src="${fThumb}" alt="Video Thumbnail" loading="lazy" onerror="this.parentElement.style.display='none'">` : '<i class="fa-brands fa-instagram" style="color:var(--gold);font-size:4rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"></i>'}
                             </div>
                             <div class="konten-overlay">
-                                <span class="konten-label">${featuredData.kategori}</span>
-                                <h3 class="konten-title-large">${escapeHtml(featuredData.judul)}</h3>
+                                <span class="konten-label"><i class="fa-solid fa-play"></i> Reels</span>
+                                <h3 class="konten-title-large">${escapeHtml(featuredData.caption || 'Video Terbaru')}</h3>
                                 <div class="konten-meta">
-                                    <i class="fa-regular fa-calendar"></i> ${featuredData.tanggal} &nbsp;·&nbsp;
-                                    <i class="fa-regular fa-user"></i> Admin
+                                    <i class="fa-brands fa-instagram"></i> @masjidal_aqobah7
                                 </div>
                             </div>
                         </a>
@@ -692,20 +695,19 @@ async function loadDynamicData() {
 
                     let sideHTML = '';
                     if (sideDataList.length > 0) {
-                        sideHTML = `<div class="konten-side-list">` + sideDataList.map(b => {
-                            const sImgArr = b.images || b.foto || [];
-                            const sThumb = (sImgArr.length > 0) ? sImgArr[0] : (b.thumbnail || '');
+                        sideHTML = `<div class="konten-side-list">` + sideDataList.map(v => {
+                            const sThumb = v.thumbnail || '';
                             const hasSImg = !!sThumb;
                             return `
-                                <a href="javascript:void(0)" class="konten-side-item" data-berita-id="${b.id}">
+                                <a href="${v.url || '#'}" target="_blank" rel="noopener" class="konten-side-item">
                                     <div class="konten-side-img-wrap">
-                                        ${hasSImg ? `<img src="${sThumb}" alt="${escapeHtml(b.judul)}" loading="lazy">` : '<i class="fa-solid fa-newspaper" style="color:rgba(255,255,255,0.5);font-size:2rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"></i>'}
-                                        <span class="konten-side-label">${b.kategori}</span>
+                                        ${hasSImg ? `<img src="${sThumb}" alt="Thumbnail" loading="lazy">` : '<i class="fa-brands fa-instagram" style="color:rgba(255,255,255,0.5);font-size:2rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"></i>'}
+                                        <span class="konten-side-label"><i class="fa-solid fa-play"></i> Video</span>
                                     </div>
                                     <div class="konten-side-info">
-                                        <h4 class="konten-side-title">${escapeHtml(b.judul)}</h4>
+                                        <h4 class="konten-side-title">${escapeHtml(v.caption || 'Konten Video Instagram')}</h4>
                                         <div class="konten-side-date">
-                                            <i class="fa-regular fa-calendar"></i> ${b.tanggal}
+                                            <i class="fa-brands fa-instagram"></i> Masjid Al Aqobah 7
                                         </div>
                                     </div>
                                 </a>
@@ -715,23 +717,8 @@ async function loadDynamicData() {
 
                     kontenUtamaContainer.innerHTML = featuredHTML + sideHTML;
 
-                    // Bind click for modal in Konten Utama
-                    kontenUtamaContainer.querySelectorAll('[data-berita-id]').forEach(card => {
-                        card.addEventListener('click', () => {
-                            const id = card.dataset.beritaId;
-                            const item = pubBerita.find(b => String(b.id) === String(id));
-                            if (!item) return;
-                            const tanggalFmt = new Date(item.tanggal).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
-                            const bodyContent = item.deskripsi_lengkap || item.isi || '';
-                            const fallbackText = item.deskripsi_singkat || '';
-                            openContentModal({
-                                judul: item.judul, badge: item.kategori, tanggal: tanggalFmt,
-                                isi: bodyContent || `<p>${escapeHtml(fallbackText)}</p>`, foto: item.images || item.foto || [], logo: item.logo || null
-                            });
-                        });
-                    });
                 } else {
-                    kontenUtamaContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#888; padding:2rem 0;">Belum ada konten informasi yang dipublikasikan.</p>';
+                    kontenUtamaContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#888; padding:2rem 0;">Belum ada video video Instagram yang dipublikasikan saat ini.</p>';
                 }
             }
 
