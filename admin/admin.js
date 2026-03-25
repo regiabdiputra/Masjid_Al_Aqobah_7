@@ -2878,7 +2878,7 @@ if (!window.location.pathname.includes('login')) {
                 <thead><tr><th>Thumbnail</th><th>Caption</th><th>URL Instagram</th><th>Aktif</th><th style="text-align:right;">Aksi</th></tr></thead>
                 <tbody>
                 ${videos.map(v => `<tr>
-                    <td>${v.thumbnail ? `<img src="${v.thumbnail}" style="width:100px;aspect-ratio:16/9;object-fit:cover;border-radius:6px;">` : '<span style="color:var(--text-muted);font-size:12px;">Tanpa Gambar</span>'}</td>
+                    <td>${v.thumbnail ? `<img src="${v.thumbnail}" style="width:60px;aspect-ratio:9/16;object-fit:cover;border-radius:6px;">` : '<span style="color:var(--text-muted);font-size:12px;">Tanpa Gambar</span>'}</td>
                     <td style="max-width:200px;font-size:12px;">${(v.caption||'').substring(0,80)}${(v.caption||'').length>80?'…':''}</td>
                     <td style="max-width:180px;"><a href="${v.url}" target="_blank" style="font-size:11px;color:var(--primary-green);word-break:break-all;">${v.url.substring(0,50)}…</a></td>
                     <td><input type="checkbox" class="chk-video-aktif" data-id="${v.id}" ${v.aktif!==false?'checked':''} style="width:16px;height:16px;accent-color:var(--primary-green);"></td>

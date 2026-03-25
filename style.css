@@ -747,7 +747,7 @@ h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
 }
 @media (min-width: 992px) {
   .konten-utama-grid {
-    grid-template-columns: 1.6fr 1fr; /* Featured gets ~60% width */
+    grid-template-columns: 340px 1fr; /* Featured gets portait width */
     gap: 2rem;
   }
 }
@@ -757,7 +757,7 @@ h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  height: 400px; /* Base height, responds to grid */
+  height: 580px; /* Tall height for portrait reel */
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   display: block;
   text-decoration: none;
@@ -765,7 +765,7 @@ h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
   border: 1px solid rgba(27,67,50,0.08);
 }
 @media (max-width: 768px) {
-  .konten-featured { height: 320px; border-radius: var(--radius-md); }
+  .konten-featured { height: 480px; border-radius: var(--radius-md); }
 }
 .konten-featured:hover {
   transform: translateY(-5px) scale(1.01);
@@ -844,15 +844,15 @@ h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
 }
 .konten-side-img-wrap {
   flex-shrink: 0;
-  width: 120px;
-  height: 85px;
+  width: 90px;
+  height: 140px; /* Portrait ratio */
   border-radius: var(--radius-sm);
   overflow: hidden;
   position: relative;
   background: var(--green-800);
 }
 @media (max-width: 480px) {
-  .konten-side-img-wrap { width: 90px; height: 75px; }
+  .konten-side-img-wrap { width: 75px; height: 110px; }
 }
 .konten-side-img-wrap img {
   width: 100%; height: 100%; object-fit: cover;
