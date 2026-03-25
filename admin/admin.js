@@ -316,17 +316,22 @@ if (!window.location.pathname.endsWith('login.html')) {
 
         const table = tableMap[collection];
         
-        if (table === null) {
-            // Config collections
-            return await SupaDB.fetchConfig(collection) || {};
+        try {
+            if (table === null) {
+                // Config collections
+                return await SupaDB.fetchConfig(collection) || {};
+            }
+            
+            if (table) {
+                return await SupaDB.fetchAll(table);
+            }
+            
+            // Fallback for unknown collections - try site_config
+            return await SupaDB.fetchConfig(collection) || [];
+        } catch (err) {
+            console.warn(`[getDB] Gagal mengambil '${collection}':`, err.message);
+            return table === null ? {} : [];
         }
-        
-        if (table) {
-            return await SupaDB.fetchAll(table);
-        }
-        
-        // Fallback for unknown collections - try site_config
-        return await SupaDB.fetchConfig(collection) || [];
     }
 
     async function saveConfig(key, data) {
@@ -439,8 +444,11 @@ if (!window.location.pathname.endsWith('login.html')) {
         const kegiatan = await getDB('kegiatan');
         const layanan = await getDB('layanan');
         const lastUpdated = getLastUpdated();
-        const allTransactions = await SupaDB.fetchAll('donasi_transactions');
-        const allPrograms = await SupaDB.fetchAll('donasi_programs');
+        
+        let allTransactions = [];
+        let allPrograms = [];
+        try { allTransactions = await SupaDB.fetchAll('donasi_transactions'); } catch(e) {}
+        try { allPrograms = await SupaDB.fetchAll('donasi_programs'); } catch(e) {}
 
         // Get 5 latest berita
         const recentBerita = [...berita].sort((a,b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 5);

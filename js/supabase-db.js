@@ -35,6 +35,11 @@ const SupaDB = {
         const { data, error } = await query;
 
         if (error) {
+            // PGRST205 = table not found — return empty instead of crashing
+            if (error.code === 'PGRST205' || error.code === '42P01') {
+                console.warn(`[SupaDB] Table '${table}' belum ada. Jalankan SQL schema di Supabase Dashboard.`);
+                return [];
+            }
             console.error(`[SupaDB] fetchAll(${table}) error:`, error);
             throw new Error(`Gagal mengambil data dari ${table}: ${error.message}`);
         }
@@ -159,6 +164,11 @@ const SupaDB = {
             .single();
 
         if (error) {
+            // PGRST205 = table not found, PGRST116 = row not found — both okay
+            if (error.code === 'PGRST205' || error.code === '42P01' || error.code === 'PGRST116') {
+                console.warn(`[SupaDB] Config '${key}' belum ada. Jalankan SQL schema di Supabase Dashboard.`);
+                return null;
+            }
             console.error(`[SupaDB] fetchConfig(${key}) error:`, error);
             return null;
         }
