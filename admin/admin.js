@@ -10,7 +10,7 @@ const LOCKOUT_TIME_KEY = 'aqobah7_lockout_time';
 
 // Check Auth Guard (async)
 async function checkAuth() {
-    const isLoginPath = window.location.pathname.endsWith('login.html');
+    const isLoginPath = window.location.pathname.includes('login');
     const { data: { session } } = await window._supabase.auth.getSession();
 
     if (!session && !isLoginPath) {
@@ -24,7 +24,7 @@ async function checkAuth() {
 checkAuth();
 
 // Login Logic (Only runs on login.html)
-if (window.location.pathname.endsWith('login.html')) {
+if (window.location.pathname.includes('login')) {
     const loginForm = document.getElementById('loginForm');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
@@ -153,7 +153,7 @@ if (window.location.pathname.endsWith('login.html')) {
 }
 
 // --- Dashboard Logic (Only runs on index.html) ---
-if (!window.location.pathname.endsWith('login.html')) {
+if (!window.location.pathname.includes('login')) {
     document.addEventListener('DOMContentLoaded', () => {
         initDashboardUI();
         initRouter();
