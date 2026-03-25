@@ -2935,9 +2935,9 @@ if (!window.location.pathname.includes('login')) {
                     <textarea class="form-control" id="vCaption" rows="3" placeholder="Deskripsi singkat video..." maxlength="300"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Thumbnail Video (Format 16:9)</label>
+                    <label>Thumbnail Video (Format 9:16 / Portrait Reel)</label>
                     <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 10px;">
-                        <div style="width: 120px; aspect-ratio: 16/9; border-radius: 8px; background: #ddd; overflow:hidden; border: 1px solid var(--border-color);">
+                        <div style="width: 100px; aspect-ratio: 9/16; border-radius: 8px; background: #ddd; overflow:hidden; border: 1px solid var(--border-color);">
                             <img id="v_preview" src="" style="width:100%; height:100%; object-fit:cover; display:none;">
                         </div>
                         <input type="file" id="v_file" accept="image/*" style="display:none">
