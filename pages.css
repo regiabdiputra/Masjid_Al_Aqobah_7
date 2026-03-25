@@ -1,0 +1,36 @@
+/* ============================================
+   LAYANAN PAGE STYLES
+   ============================================ */
+.layanan-full-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+.layanan-full-card { background: var(--white); border-radius: var(--radius-md); padding: 2.25rem 1.75rem; border: 1px solid rgba(27,67,50,0.08); box-shadow: var(--shadow-sm); transition: var(--transition); position: relative; overflow: hidden; }
+.layanan-full-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green-700), var(--gold)); opacity: 0; transition: var(--transition); }
+.layanan-full-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.layanan-full-card:hover::before { opacity: 1; }
+.layanan-full-icon { width: 68px; height: 68px; background: linear-gradient(135deg, var(--green-800), var(--green-600)); border-radius: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.7rem; color: var(--gold); }
+.layanan-full-card h3 { font-size: 1.1rem; color: var(--green-800); margin-bottom: 0.6rem; font-weight: 700; }
+.layanan-full-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem; }
+.layanan-cta-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; font-weight: 600; color: var(--green-700); transition: var(--transition); }
+.layanan-cta-link:hover { color: var(--gold); gap: 0.5rem; }
+
+/* BERITA PAGE STYLES */
+.berita-full-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+.filter-tabs { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.filter-tab { padding: 0.5rem 1.25rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: 2px solid rgba(27,67,50,0.15); color: var(--text-muted); background: var(--white); transition: var(--transition); font-family: var(--font-heading); }
+.filter-tab.active, .filter-tab:hover { background: var(--green-800); border-color: var(--green-800); color: var(--white); }
+
+/* KEGIATAN PAGE STYLES */
+.kegiatan-filter { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.kegiatan-full-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.kegiatan-full-card { background: var(--white); border-radius: var(--radius-md); padding: 1.75rem; box-shadow: var(--shadow-sm); transition: var(--transition); border-left: 4px solid var(--green-600); display: flex; gap: 1.25rem; align-items: flex-start; }
+.kegiatan-full-card:hover { box-shadow: var(--shadow-md); transform: translateX(4px); }
+.kegiatan-full-card:nth-child(even) { border-left-color: var(--gold); }
+
+@media (max-width: 1024px) {
+  .layanan-full-grid { grid-template-columns: repeat(2, 1fr); }
+  .berita-full-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .layanan-full-grid { grid-template-columns: 1fr; }
+  .berita-full-grid { grid-template-columns: 1fr; }
+  .kegiatan-full-grid { grid-template-columns: 1fr; }
+}

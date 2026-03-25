@@ -1,0 +1,368 @@
+/* ============================================
+   DONASI PAGE STYLES
+   ============================================ */
+
+/* Kategori Donasi Grid */
+.donasi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+.donasi-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 0;
+  border: 1px solid rgba(27,67,50,0.08);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.donasi-poster {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #E2E8F0;
+  overflow: hidden;
+}
+
+.donasi-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.donasi-card:hover .donasi-poster img {
+  transform: scale(1.05);
+}
+
+.donasi-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.donasi-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: rgba(27,67,50,0.2);
+}
+
+.donasi-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.donasi-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--green-800), var(--green-600));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--gold);
+}
+
+.donasi-title {
+  font-size: 1.1rem;
+  color: var(--green-800);
+  margin: 0;
+  font-weight: 700;
+}
+
+.donasi-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Progress Bar */
+.donasi-progress-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green-800);
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 10px;
+  background-color: #E2E8F0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green-600), var(--green-500));
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
+  width: 0%;
+}
+
+.progress-percentage {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+  display: block;
+  font-weight: 500;
+}
+
+.btn-donasi-card {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--green-700);
+  color: var(--white);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-donasi-card:hover {
+  background-color: var(--green-800);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   MODAL POPUP STYLES
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  padding: 1rem;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--white);
+  width: 100%;
+  max-width: 500px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0) scale(1);
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 10;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--green-800);
+  font-size: 1.2rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--dark);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* Form Styles dalam Modal */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--green-800);
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #E2E8F0;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  background-color: #F8FAFC;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+  background-color: var(--white);
+}
+
+.nominal-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.preset-btn {
+  padding: 0.5rem;
+  border: 1px solid #E2E8F0;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.preset-btn.active, .preset-btn:hover {
+  background: rgba(45, 106, 79, 0.1);
+  border-color: var(--green-600);
+  color: var(--green-700);
+}
+
+/* QR Pembayaran */
+.payment-instruction {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.payment-amount {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--green-800);
+  margin: 0.5rem 0;
+}
+
+.unique-code-box {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px dashed var(--gold);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-color);
+}
+
+.qr-box {
+  text-align: center;
+  padding: 1.5rem;
+  background: #F8FAFC;
+  border-radius: var(--radius-sm);
+  border: 1px solid #E2E8F0;
+  margin-bottom: 1.5rem;
+}
+
+.qr-box img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Success Message */
+.success-message {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.success-icon {
+  font-size: 4rem;
+  color: var(--green-500);
+  margin-bottom: 1rem;
+}
+
+.success-message h3 {
+  color: var(--green-800);
+  margin-bottom: 0.5rem;
+}
+
+.file-upload-wrapper {
+  border: 2px dashed #CBD5E1;
+  border-radius: var(--radius-sm);
+  padding: 2rem;
+  text-align: center;
+  background: #F8FAFC;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.file-upload-wrapper:hover {
+  border-color: var(--green-500);
+  background: rgba(45, 106, 79, 0.05);
+}
+
+.file-upload-wrapper input[type="file"] {
+  display: none;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 200px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  display: none;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Masjid Al Aqobah 7</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body class="login-body">
+
+    <div class="login-container">
+        <!-- Background Overlay for styling -->
+        <div class="login-bg-overlay"></div>
+
+        <div class="login-card">
+            <div class="login-header">
+                <i data-lucide="tent" class="login-logo-icon"></i> <!-- Mosque-like icon -->
+                <h1 class="login-title">MASJID AL AQOBAH 7</h1>
+                <p class="login-subtitle">Panel Administrasi</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="mail" class="input-icon left"></i>
+                        <input type="email" id="email" placeholder="Masukkan email admin" required
+                            autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="lock" class="input-icon left"></i>
+                        <input type="password" id="password" placeholder="Masukkan password" required
+                            autocomplete="current-password">
+                        <button type="button" class="toggle-password" id="togglePasswordBtn">
+                            <i data-lucide="eye" class="input-icon right" id="togglePasswordIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="loginMessage" class="login-message hidden"></div>
+
+                <button type="submit" class="btn btn-primary btn-block btn-login" id="loginBtn">MASUK KE PANEL
+                    ADMIN</button>
+            </form>
+
+            <div class="login-footer">
+                <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Website</a>
+            </div>
+
+            <!-- Credential Hint -->
+            <div style="margin-top: 16px; padding: 12px 16px; background: rgba(27,67,50,0.07); border: 1px solid rgba(27,67,50,0.15); border-radius: 10px; font-size: 12.5px; color: #444; text-align:left; line-height: 1.7;">
+                🔐 <strong>Login Admin:</strong><br>
+                Gunakan email dan password yang terdaftar di Supabase Auth.
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase.js"></script>
+    <script src="../js/supabase-db.js"></script>
+    <script src="../js/supabase-storage.js"></script>
+
+    <!-- Admin JS for Auth Logic -->
+    <script src="admin.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

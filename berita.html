@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Berita dan informasi terkini seputar kegiatan Masjid Al Aqobah 7 — kajian, pengumuman, sosial, dan lebih banyak lagi.">
+  <title>Berita | Masjid Al Aqobah 7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar" aria-label="Navigasi Utama">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <div class="navbar-logo"><svg viewBox="0 0 24 24"><path d="M12 2C9 2 7 4 7 4H5v2l-3 1v14h4v-6h12v6h4V7l-3-1V4h-2S15 2 12 2zm0 2c2 0 3 1.5 3 1.5H9S10 4 12 4zM5 8l7-2 7 2v2H5V8zm1 4h12v1H6v-1z"/></svg></div>
+        <div class="navbar-brand-text">
+          <div class="navbar-brand-name">Al Aqobah 7</div>
+          <div class="navbar-brand-sub">Kalidoni, Palembang</div>
+        </div>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="layanan.html" class="nav-link">Layanan Masyarakat</a></li>
+        <li><a href="berita.html" class="nav-link active">Berita</a></li>
+        <li><a href="kegiatan.html" class="nav-link">Kegiatan Masjid</a></li>
+        <li><a href="donasi.html" class="nav-link">Donasi</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Buka menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <nav class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html" class="nav-link"><i class="fa-solid fa-house" style="width:20px"></i> Beranda</a>
+    <a href="layanan.html" class="nav-link"><i class="fa-solid fa-hands-helping" style="width:20px"></i> Layanan Masyarakat</a>
+    <a href="berita.html" class="nav-link active"><i class="fa-solid fa-newspaper" style="width:20px"></i> Berita</a>
+    <a href="kegiatan.html" class="nav-link"><i class="fa-solid fa-calendar-days" style="width:20px"></i> Kegiatan Masjid</a>
+    <a href="donasi.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="width:20px"></i> Donasi</a>
+  </nav>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Halaman Berita">
+      <p class="breadcrumb"><a href="index.html">Beranda</a> <span>›</span> Berita</p>
+      <h1>Berita &amp; Informasi</h1>
+      <p>Tetap update dengan perkembangan terbaru seputar kegiatan, program, dan pengumuman Masjid Al Aqobah 7.</p>
+    </section>
+
+    <!-- BERITA SECTION -->
+    <section class="section" aria-labelledby="berita-page-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Terkini</p>
+          <h2 class="section-title" id="berita-page-title">Semua Berita</h2>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs" role="group" aria-label="Filter kategori berita">
+          <button class="filter-tab active" data-category="semua" id="filter-semua">Semua</button>
+          <button class="filter-tab" data-category="kajian" id="filter-kajian">Kajian</button>
+          <button class="filter-tab" data-category="pengumuman" id="filter-pengumuman">Pengumuman</button>
+          <button class="filter-tab" data-category="sosial" id="filter-sosial">Sosial</button>
+          <button class="filter-tab" data-category="kegiatan" id="filter-kegiatan">Kegiatan</button>
+        </div>
+
+        <div class="berita-full-grid" role="list" aria-label="Daftar artikel berita">
+
+          <article class="berita-card reveal reveal-delay-1" data-category="kajian" role="listitem">
+            <div class="berita-thumb">
+              <div style="background:linear-gradient(135deg,#1B4332,#2D6A4F);height:100%;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-book-quran" style="font-size:3rem;color:#C9A84C" aria-hidden="true"></i>
+              </div>
+              <span class="berita-badge">Kajian</span>
+            </div>
+            <div class="berita-body">
+              <p class="berita-meta"><i class="fa-regular fa-calendar"></i> 10 Maret 2026 &nbsp;·&nbsp; <i class="fa-regular fa-user"></i> Admin Masjid</p>
+              <h3>Kajian Ramadhan 1447H: Meraih Ketakwaan di Bulan Penuh Berkah</h3>
+              <p>Rangkaian kegiatan kajian Ramadhan akan diisi oleh ustadz-ustadz berpengalaman dari berbagai pesantren terkemuka. Tersedia program tilawah, tadabbur, dan ifthar jama'i setiap hari.</p>
+              <a href="#" class="berita-read">Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="berita-card reveal reveal-delay-2" data-category="pengumuman" role="listitem">
+            <div class="berita-thumb">
+              <div style="background:linear-gradient(135deg,#2D6A4F,#40916C);height:100%;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-mosque" style="font-size:3rem;color:#C9A84C" aria-hidden="true"></i>
+              </div>
+              <span class="berita-badge">Pengumuman</span>
+            </div>
+            <div class="berita-body">
+              <p class="berita-meta"><i class="fa-regular fa-calendar"></i> 5 Maret 2026 &nbsp;·&nbsp; <i class="fa-regular fa-user"></i> Pengurus DKM</p>
+              <h3>Alhamdulillah! Renovasi Serambi dan Area Wudhu Selesai</h3>
+              <p>Setelah dua bulan pengerjaan, renovasi serambi utama dan area wudhu Masjid Al Aqobah 7 telah rampung. Fasilitas baru ini semakin nyaman untuk digunakan jamaah.</p>
+              <a href="#" class="berita-read">Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="berita-card reveal reveal-delay-3" data-category="sosial" role="listitem">
+            <div class="berita-thumb">
+              <div style="background:linear-gradient(135deg,#145A32,#1B4332);height:100%;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-hand-holding-heart" style="font-size:3rem;color:#C9A84C" aria-hidden="true"></i>
+              </div>
+              <span class="berita-badge">Sosial</span>
+            </div>
+            <div class="berita-body">
+              <p class="berita-meta"><i class="fa-regular fa-calendar"></i> 1 Maret 2026 &nbsp;·&nbsp; <i class="fa-regular fa-user"></i> Tim Sosial</p>
+              <h3>Santunan 50 Anak Yatim dalam Program Jumat Berkah</h3>
+              <p>Masjid Al Aqobah 7 berhasil menyantuni 50 anak yatim dari keluarga kurang mampu. Program ini didukung oleh donasi jamaah yang terus mengalir dengan penuh keikhlasan.</p>
+              <a href="#" class="berita-read">Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="berita-card reveal reveal-delay-1" data-category="kegiatan" role="listitem">
+            <div class="berita-thumb">
+              <div style="background:linear-gradient(135deg,#0D2B1E,#1B4332);height:100%;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-users" style="font-size:3rem;color:#C9A84C" aria-hidden="true"></i>
+              </div>
+              <span class="berita-badge">Kegiatan</span>
+            </div>
+            <div class="berita-body">
+              <p class="berita-meta"><i class="fa-regular fa-calendar"></i> 22 Februari 2026 &nbsp;·&nbsp; <i class="fa-regular fa-user"></i> Panitia MABIT</p>
+              <h3>MABIT Remaja: 80 Peserta Ramaikan Malam Ibadah Bersama</h3>
+              <p>Kegiatan Malam Bina Iman dan Taqwa (MABIT) untuk remaja berjalan lancar dan penuh semangat. Sebanyak 80 peserta mengikuti rangkaian sholat malam, tausiyah, dan sahur bersama.</p>
+              <a href="#" class="berita-read">Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="berita-card reveal reveal-delay-2" data-category="kajian" role="listitem">
+            <div class="berita-thumb">
+              <div style="background:linear-gradient(135deg,#1B4332,#40916C);height:100%;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-graduation-cap" style="font-size:3rem;color:#C9A84C" aria-hidden="true"></i>
+              </div>
+              <span class="berita-badge">Kajian</span>
+            </div>
+            <div class="berita-body">
+              <p class="berita-meta"><i class="fa-regular fa-calendar"></i> 15 Februari 2026 &nbsp;·&nbsp; <i class="fa-regular fa-user"></i> Admin TPA</p>
+              <h3>Wisuda TPA: 30 Santri Khatam Iqro dengan Membanggakan</h3>
+              <p>Alhamdulillah, sebanyak 30 santri TPA Al Aqobah 7 berhasil menyelesaikan seluruh jilid Iqro. Acara wisuda dihadiri oleh orang tua dan pengurus masjid dengan penuh kebanggaan.</p>
+              <a href="#" class="berita-read">Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="berita-card reveal reveal-delay-3" data-category="pengumuman" role="listitem">
+            <div class="berita-thumb">
+              <div style="background:linear-gradient(135deg,#2D6A4F,#145A32);height:100%;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-bell" style="font-size:3rem;color:#C9A84C" aria-hidden="true"></i>
+              </div>
+              <span class="berita-badge">Pengumuman</span>
+            </div>
+            <div class="berita-body">
+              <p class="berita-meta"><i class="fa-regular fa-calendar"></i> 10 Februari 2026 &nbsp;·&nbsp; <i class="fa-regular fa-user"></i> Sekretariat DKM</p>
+              <h3>Pendaftaran Panitia Ramadhan 1447H Resmi Dibuka</h3>
+              <p>Masjid Al Aqobah 7 membuka pendaftaran untuk gabung sebagai panitia Ramadhan 1447H. Dibutuhkan relawan di bidang konsumsi, kesekretariatan, keamanan, dan humas.</p>
+              <a href="#" class="berita-read">Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Banner -->
+    <div class="quote-banner">
+      <div class="container">
+        <p class="quote-text">وَذَكِّرْ فَإِنَّ الذِّكْرَىٰ تَنفَعُ الْمُؤْمِنِينَ</p>
+        <p class="quote-translation">"Dan tetaplah memberi peringatan, karena sesungguhnya peringatan itu bermanfaat bagi orang-orang yang beriman."</p>
+        <p class="quote-source">— QS. Adz-Dzariyat: 55</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-ornament" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><div class="footer-logo"><svg viewBox="0 0 24 24"><path d="M12 2C9 2 7 4 7 4H5v2l-3 1v14h4v-6h12v6h4V7l-3-1V4h-2S15 2 12 2zm0 2c2 0 3 1.5 3 1.5H9S10 4 12 4zM5 8l7-2 7 2v2H5V8zm1 4h12v1H6v-1z"/></svg></div>            <div><div class="footer-name">MASJID AL AQOBAH 7</div><div class="footer-sub">Sei Selincah, Kalidoni, Kota Palembang</div></div></div>
+          <p class="footer-desc">Masjid Al Aqobah 7 hadir sebagai pusat kegiatan umat dan jantung kehidupan komunitas Muslim yang hangat.</p>
+          <div class="footer-socials"><a href="#" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a><a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></div>
+        </div>
+        <nav><p class="footer-heading">Menu Utama</p><ul class="footer-links"><li><a href="index.html">Beranda</a></li><li><a href="layanan.html">Layanan Masyarakat</a></li><li><a href="berita.html">Berita</a></li><li><a href="kegiatan.html">Kegiatan Masjid</a></li><li><a href="donasi.html">Donasi</a></li></ul></nav>
+        <nav><p class="footer-heading">Layanan</p><ul class="footer-links"><li><a href="layanan.html">Kajian Ahad & Jumat</a></li><li><a href="layanan.html">Bank Beras & Sayur</a></li><li><a href="layanan.html">Remaja GEMMA</a></li><li><a href="layanan.html">Pendidikan Tahfidz</a></li></ul></nav>
+        <address><p class="footer-heading">Hubungi Kami</p><div class="footer-contact"><div class="contact-item"><i class="fa-solid fa-location-dot"></i><span>Jalan Taqwa Merah Mata RT 60/07, Sei Selincah, Kalidoni, Kota Palembang</span></div><div class="contact-item"><i class="fa-brands fa-whatsapp"></i><span>0857-6428-0131</span></div><div class="contact-item"><i class="fa-regular fa-envelope"></i><span>info@alaqobah7.id</span></div></div></address>
+      </div>
+      <div class="footer-bottom"><p class="footer-copy">© 2025 <span>Masjid Al Aqobah 7</span>. Seluruh Hak Cipta Dilindungi.</p></div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/supabase-db.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
+

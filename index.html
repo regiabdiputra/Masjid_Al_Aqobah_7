@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Masjid Al Aqobah 7 — Membangun Umat, Memakmurkan Masjid, Meraih Ridho Ilahi. Masjid komunitas yang hangat dan dekat dengan masyarakat di Palembang.">
+  <title>Masjid Al Aqobah 7 | Pusat Ibadah & Donasi Digital</title>
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alaqobah7.id/">
+  <meta property="og:title" content="Masjid Al Aqobah 7 | Sedekah & Infaq Digital">
+  <meta property="og:description" content="Salurkan donasi terbaik Anda untuk program pemberdayaan umat di Masjid Al Aqobah 7 Palembang.">
+  <meta property="og:image" content="https://alaqobah7.id/assets/og-image.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =============================================
+       NAVBAR
+       ============================================= -->
+  <nav class="navbar" id="navbar" aria-label="Navigasi Utama">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand" aria-label="Masjid Al Aqobah 7 - Beranda">
+        <div class="navbar-logo">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path
+              d="M12 2C9 2 7 4 7 4H5v2l-3 1v14h4v-6h12v6h4V7l-3-1V4h-2S15 2 12 2zm0 2c2 0 3 1.5 3 1.5H9S10 4 12 4zM5 8l7-2 7 2v2H5V8zm1 4h12v1H6v-1z" />
+          </svg>
+        </div>
+        <div class="navbar-brand-text">
+          <div class="navbar-brand-name">Al Aqobah 7</div>
+          <div class="navbar-brand-sub">Kalidoni, Palembang</div>
+        </div>
+      </a>
+
+      <ul class="navbar-menu" role="menubar">
+        <li role="none"><a href="index.html" class="nav-link active" role="menuitem">Beranda</a></li>
+        <li role="none"><a href="layanan.html" class="nav-link" role="menuitem">Layanan Masyarakat</a></li>
+        <li role="none"><a href="berita.html" class="nav-link" role="menuitem">Berita</a></li>
+        <li role="none"><a href="kegiatan.html" class="nav-link" role="menuitem">Kegiatan Masjid</a></li>
+        <li role="none"><a href="donasi.html" class="nav-link" role="menuitem">Donasi</a></li>
+      </ul>
+
+      <div class="navbar-actions" style="display: flex; align-items: center; gap: 0.5rem;">
+        <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Ganti Tema" title="Ganti Tema">
+          <i class="fa-solid fa-palette"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Buka menu navigasi" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+  <nav class="mobile-drawer" id="mobileDrawer" aria-label="Navigasi Mobile">
+    <a href="index.html" class="nav-link active">
+      <i class="fa-solid fa-house" style="width:20px"></i> Beranda
+    </a>
+    <a href="layanan.html" class="nav-link">
+      <i class="fa-solid fa-hands-helping" style="width:20px"></i> Layanan Masyarakat
+    </a>
+    <a href="berita.html" class="nav-link">
+      <i class="fa-solid fa-newspaper" style="width:20px"></i> Berita
+    </a>
+    <a href="kegiatan.html" class="nav-link">
+      <i class="fa-solid fa-calendar-days" style="width:20px"></i> Kegiatan Masjid
+    </a>
+    <a href="donasi.html" class="nav-link">
+      <i class="fa-solid fa-hand-holding-dollar" style="width:20px"></i> Donasi
+    </a>
+  </nav>
+
+  <main>
+
+    <!-- =============================================
+       SECTION 1 — HERO
+       ============================================= -->
+    <section class="hero" id="beranda" aria-label="Hero Beranda">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-pattern" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="hero-inner">
+          <p class="hero-arabic" aria-label="Bismillahirrahmanirrahim">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+
+          <!-- Ornament -->
+          <div class="ornament-divider ornament-divider-white" aria-hidden="true" style="margin:0.75rem auto 1.5rem">
+            <svg class="ornament-star" viewBox="0 0 100 100">
+              <polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" />
+            </svg>
+          </div>
+
+          <p class="hero-eyebrow">Masjid Al Aqobah 7</p>
+          <h1 class="hero-title">MASJID<br>AL AQOBAH 7</h1>
+          <p class="hero-tagline">Membangun Umat, Memakmurkan Masjid,<br>Meraih Ridho Ilahi</p>
+
+          <div class="hero-cta">
+            <a href="donasi.html" class="btn btn-primary" id="cta-donasi">
+              <i class="fa-solid fa-heart"></i> Donasi Sekarang
+            </a>
+            <a href="layanan.html" class="btn btn-outline" id="cta-layanan">
+              <i class="fa-solid fa-hands-helping"></i> Layanan Masyarakat
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="hero-scroll-icon">
+          <div class="hero-scroll-dot"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       SECTION 2 — STATISTIK
+       ============================================= -->
+    <section class="stats-section" aria-label="Statistik Masjid">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card reveal">
+            <div class="stat-icon"><i class="fa-solid fa-users" aria-hidden="true"></i></div>
+            <div class="stat-number" data-target="850" data-suffix="+" aria-label="850+ Jamaah Aktif">0</div>
+            <div class="stat-label">Jamaah Aktif</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-1">
+            <div class="stat-icon"><i class="fa-solid fa-mosque" aria-hidden="true"></i></div>
+            <div class="stat-number" data-target="2015" aria-label="Diresmikan 2015">0</div>
+            <div class="stat-label">Tahun Diresmikan</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-2">
+            <div class="stat-icon"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></div>
+            <div class="stat-number" data-target="3633" data-suffix=" m²" aria-label="3633 m² Luas Tanah">0</div>
+            <div class="stat-label">Luas Tanah Wakaf/Hibah</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <div class="stat-icon"><i class="fa-solid fa-building-user" aria-hidden="true"></i></div>
+            <div class="stat-number" data-target="1000" data-suffix=" m²" aria-label="1000 m² Luas Bangunan">0</div>
+            <div class="stat-label">Luas Bangunan</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       GAMBAR KEGIATAN BERANDA (CARD CAROUSEL KOMPAK)
+       ============================================= -->
+    <section class="keg-carousel-section" aria-label="Foto Kegiatan Terbaru">
+      <div class="container">
+        <div class="keg-carousel-header">
+          <div>
+            <p class="section-label" style="margin-bottom:0.25rem"><i class="fa-solid fa-images"></i> &nbsp;Dokumentasi</p>
+            <h2 class="keg-carousel-title">Foto Kegiatan Kami</h2>
+          </div>
+          <a href="kegiatan.html" class="btn btn-outline-green btn-sm">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- FULL WIDTH SLIDER CONTAINER -->
+      <div class="keg-carousel-wrap" style="max-width: 100%; border-radius: 0; box-shadow: none;">
+        <div class="keg-carousel-track" id="kegiatanSlider">
+            <!-- Rendered by main.js -->
+          </div>
+          <button class="k-arrow k-prev" id="kegPrev" aria-label="Kegiatan sebelumnya">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="k-arrow k-next" id="kegNext" aria-label="Kegiatan berikutnya">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      <div class="container">
+        <div class="kegiatan-dots" id="kegDots"></div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       (BANNER INLINE DIHAPUS, DIGANTIKAN POP-UP)
+       ============================================= -->    <!-- =============================================
+       SECTION — VIDEO TERKINI
+       ============================================= -->
+    <section class="section video-section" id="video-terkini" aria-labelledby="video-title" style="display:none">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label"><i class="fa-brands fa-instagram"></i> &nbsp;Media Sosial</p>
+          <h2 class="section-title" id="video-title">Video Terkini</h2>
+          <p class="section-subtitle">Ikuti konten video terbaru dari akun Instagram resmi Masjid Al Aqobah 7.</p>
+        </div>
+        <div class="video-grid" id="videoGrid">
+          <!-- Render from main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       SECTION 3 — VISI MISI
+       ============================================= -->
+    <section class="section visi-misi" id="visi-misi" aria-labelledby="visi-misi-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Identitas Kami</p>
+          <h2 class="section-title" id="visi-misi-title">Visi &amp; Misi Kami</h2>
+          <div class="ornament-divider" aria-hidden="true">
+            <svg class="ornament-star" viewBox="0 0 100 100">
+              <polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="visi-misi-grid">
+          <!-- VISI -->
+          <div class="visi-card reveal-left">
+            <p class="visi-label"><i class="fa-solid fa-clock-rotate-left"></i> &nbsp;Sejarah Singkat</p>
+            <p class="visi-text" style="font-size: 0.95rem; line-height: 1.6; font-weight: 500;">
+              Masjid Al Aqobah 7 mulai dibangun pada tahun 2013 atas prakarsa Direksi, karyawan, serta para pensiunan PT
+              Pupuk Sriwidjaja. Diresmikan pada 18 Juni 2015 (1 Ramadan 1436 H). Kini masjid berkembang pesat sebagai
+              pusat ibadah, pendidikan Al-Qur’an, pembinaan remaja GEMMA, dan program kemasyarakatan.
+            </p>
+            <div class="ornament-divider ornament-divider-white" style="max-width:200px;margin:1.25rem 0"
+              aria-hidden="true">
+              <svg class="ornament-star" viewBox="0 0 100 100" style="width:20px;height:20px">
+                <polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" />
+              </svg>
+            </div>
+            <p class="visi-label"><i class="fa-solid fa-eye"></i> &nbsp;Visi</p>
+            <p class="visi-text">
+              Menjadi pusat peradaban dan ibadah yang makmur, serta berkontribusi nyata bagi kesejahteraan masyarakat
+              Kota Palembang khususnya di Sei Selincah.
+            </p>
+          </div>
+
+          <!-- MISI -->
+          <div class="reveal-right">
+            <p class="section-label" style="margin-bottom:1rem"><i class="fa-solid fa-bullseye"></i> &nbsp;Misi</p>
+            <ul class="misi-list" aria-label="Misi Masjid Al Aqobah 7">
+              <li class="misi-item">
+                <div class="misi-icon"><i class="fa-solid fa-book-quran" aria-hidden="true"></i></div>
+                <div class="misi-text">
+                  <h4>Meningkatkan Kualitas Ibadah</h4>
+                  <p>Menyelenggarakan kegiatan ibadah dan kajian ilmu yang rutin, berkualitas, dan mudah diakses oleh
+                    seluruh lapisan masyarakat.</p>
+                </div>
+              </li>
+              <li class="misi-item">
+                <div class="misi-icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+                <div class="misi-text">
+                  <h4>Memberdayakan Jamaah</h4>
+                  <p>Mengembangkan potensi sosial, ekonomi, dan spiritual warga melalui program pemberdayaan yang
+                    berkelanjutan.</p>
+                </div>
+              </li>
+              <li class="misi-item">
+                <div class="misi-icon"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i></div>
+                <div class="misi-text">
+                  <h4>Membantu yang Membutuhkan</h4>
+                  <p>Menghadirkan layanan sosial seperti santunan dhuafa, beasiswa, dan bantuan kemanusiaan bagi yang
+                    memerlukan.</p>
+                </div>
+              </li>
+              <li class="misi-item">
+                <div class="misi-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+                <div class="misi-text">
+                  <h4>Mendidik Generasi Qur'ani</h4>
+                  <p>Memfasilitasi pendidikan Al-Qur'an, akhlak, dan keilmuan Islam bagi anak-anak dan remaja melalui
+                    TPA dan program unggulan.</p>
+                </div>
+              </li>
+              <li class="misi-item">
+                <div class="misi-icon"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></div>
+                <div class="misi-text">
+                  <h4>Memakmurkan Masjid</h4>
+                  <p>Menjaga, merawat, dan mengembangkan masjid sebagai pusat kegiatan umat yang hidup dan berdampak
+                    bagi komunitas.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       SECTION 4 — LAYANAN UNGGULAN
+       ============================================= -->
+    <section class="section" aria-labelledby="layanan-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Untuk Masyarakat</p>
+          <h2 class="section-title" id="layanan-title">Layanan untuk Masyarakat</h2>
+          <p class="section-subtitle">Masjid bukan hanya tempat sholat — ia adalah jantung kehidupan komunitas kita.
+            Berbagai layanan kami hadirkan untuk memenuhi kebutuhan jamaah.</p>
+        </div>
+
+        <div class="layanan-grid">
+          <div class="layanan-card reveal reveal-delay-1">
+            <div class="layanan-icon"><i class="fa-solid fa-bowl-rice" aria-hidden="true"></i></div>
+            <h3>Bank Beras 1 Canting</h3>
+            <p>Program "1 Hari 1 Canting" untuk mengumpulkan dan mendistribusikan beras kepada keluarga yang membutuhkan
+              di sekitar masjid.</p>
+          </div>
+          <div class="layanan-card reveal reveal-delay-2">
+            <div class="layanan-icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
+            <h3>Berbagi Sayur Gratis</h3>
+            <p>Program sosial mingguan berbagi sayuran segar secara gratis untuk membantu meringankan kebutuhan dapur
+              masyarakat.</p>
+          </div>
+          <div class="layanan-card reveal reveal-delay-3">
+            <div class="layanan-icon"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i></div>
+            <h3>Cuci Motor Seikhlasnya</h3>
+            <p>Layanan cuci motor inovatif di area masjid dengan sistem bayar seikhlasnya, sekaligus wadah pemberdayaan
+              jamaah.</p>
+          </div>
+          <div class="layanan-card reveal reveal-delay-1">
+            <div class="layanan-icon"><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i></div>
+            <h3>Kajian Rutin</h3>
+            <p>Kajian Ahad Subuh dan Jumat Malam yang rutin diselenggarakan untuk memperdalam ilmu agama bagi seluruh
+              jamaah.</p>
+          </div>
+          <div class="layanan-card reveal reveal-delay-2">
+            <div class="layanan-icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+            <h3>Pembinaan Remaja GEMMA</h3>
+            <p>Wadah kreativitas dan keislaman Generasi Muda Masjid (GEMMA) melalui berbagai kegiatan positif dan kajian
+              tematik.</p>
+          </div>
+          <div class="layanan-card reveal reveal-delay-3">
+            <div class="layanan-icon"><i class="fa-solid fa-child" aria-hidden="true"></i></div>
+            <h3>Tahfidz &amp; Pendidikan Al-Qur'an</h3>
+            <p>Program pendidikan membaca dan menghafal Al-Qur'an untuk membentuk generasi muda yang cinta dan dekat
+              dengan kitab suci.</p>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:2.5rem">
+          <a href="layanan.html" class="btn btn-outline-green" id="btn-semua-layanan">
+            <i class="fa-solid fa-arrow-right"></i> Lihat Semua Layanan
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       SECTION 5 — BERITA TERBARU
+       ============================================= -->
+    <section class="section berita-section" aria-labelledby="berita-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Tetap Update</p>
+          <h2 class="section-title" id="berita-title">Berita &amp; Informasi Terkini</h2>
+          <p class="section-subtitle">Ikuti perkembangan terbaru seputar kegiatan dan program Masjid Al Aqobah 7.</p>
+        </div>
+
+        <div class="berita-grid" id="beritaGrid">
+          <!-- Dinamis dari main.js -->
+          <div style="grid-column:1/-1; text-align:center; padding:2rem;">
+            <i class="fa-solid fa-spinner fa-spin fa-2x" style="color:var(--green-700)"></i>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:2.5rem">
+          <a href="berita.html" class="btn btn-outline-green" id="btn-semua-berita">
+            <i class="fa-solid fa-newspaper"></i> Lihat Semua Berita
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       SECTION 6 — KEGIATAN MENDATANG
+       ============================================= -->
+    <section class="section" style="background:#F9F7F2" aria-labelledby="kegiatan-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Jadwal Terdekat</p>
+          <h2 class="section-title" id="kegiatan-title">Kegiatan Masjid</h2>
+          <p class="section-subtitle">Bergabunglah dalam berbagai kegiatan produktif dan penuh manfaat bersama jamaah
+            Masjid Al Aqobah 7.</p>
+        </div>
+
+        <div class="kegiatan-timeline" role="list" aria-label="Daftar kegiatan masjid" id="kegiatanTimeline">
+          <!-- Dinamis dari main.js -->
+          <div style="text-align:center; padding:2rem;">
+            <i class="fa-solid fa-spinner fa-spin fa-2x" style="color:var(--green-700)"></i>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:2.5rem">
+          <a href="kegiatan.html" class="btn btn-outline-green" id="btn-semua-kegiatan">
+            <i class="fa-solid fa-calendar-days"></i> Lihat Semua Kegiatan
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       SECTION 7 — JADWAL SHOLAT
+       ============================================= -->
+    <section class="section sholat-section" aria-labelledby="sholat-title">
+      <div class="sholat-pattern" aria-hidden="true"></div>
+      <div class="container">
+        <div class="sholat-header reveal">
+          <p class="section-label">Hari Ini</p>
+          <h2 class="section-title white" id="sholat-title">Jadwal Waktu Sholat</h2>
+          <p class="sholat-date" aria-live="polite">Memuat tanggal...</p>
+          <div class="ornament-divider ornament-divider-white" aria-hidden="true">
+            <svg class="ornament-star" viewBox="0 0 100 100">
+              <polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="sholat-grid" role="list" aria-label="Jadwal waktu sholat">
+          <div class="sholat-card" data-prayer="fajr" role="listitem">
+            <div class="sholat-name">Subuh</div>
+            <div class="sholat-time" aria-label="Waktu Subuh">--:--</div>
+            <div class="sholat-next" aria-live="polite"></div>
+          </div>
+          <div class="sholat-card" data-prayer="dhuhr" role="listitem">
+            <div class="sholat-name">Dzuhur</div>
+            <div class="sholat-time" aria-label="Waktu Dzuhur">--:--</div>
+            <div class="sholat-next" aria-live="polite"></div>
+          </div>
+          <div class="sholat-card" data-prayer="asr" role="listitem">
+            <div class="sholat-name">Ashar</div>
+            <div class="sholat-time" aria-label="Waktu Ashar">--:--</div>
+            <div class="sholat-next" aria-live="polite"></div>
+          </div>
+          <div class="sholat-card" data-prayer="maghrib" role="listitem">
+            <div class="sholat-name">Maghrib</div>
+            <div class="sholat-time" aria-label="Waktu Maghrib">--:--</div>
+            <div class="sholat-next" aria-live="polite"></div>
+          </div>
+          <div class="sholat-card" data-prayer="isha" role="listitem">
+            <div class="sholat-name">Isya</div>
+            <div class="sholat-time" aria-label="Waktu Isya">--:--</div>
+            <div class="sholat-next" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="sholat-countdown reveal">
+          <p class="countdown-label countdown-next-label">Menghitung waktu sholat...</p>
+          <div class="countdown-timer" aria-live="polite" aria-label="Hitung mundur waktu sholat">00:00:00</div>
+          <div class="sholat-location">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <span>Palembang, Sumatera Selatan — WIB (UTC+7)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       SECTION — KOMENTAR PUBLIK
+       ============================================= -->
+    <section class="section komentar-section" id="komentar-publik" aria-labelledby="komentar-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label"><i class="fa-solid fa-comments"></i> &nbsp;Interaksi</p>
+          <h2 class="section-title" id="komentar-title">Komentar & Pesan</h2>
+          <p class="section-subtitle">Bagikan kesan dan pesan Anda untuk Masjid Al Aqobah 7.</p>
+        </div>
+
+        <div class="komentar-layout">
+          <!-- Form Komentar -->
+          <div class="komentar-form-wrap reveal-left">
+            <div class="komentar-tabs">
+              <button class="ktab-btn active" data-tab="komentar" id="tabKomentar"><i class="fa-solid fa-comment"></i> Komentar</button>
+              <button class="ktab-btn" data-tab="kritik" id="tabKritik"><i class="fa-solid fa-envelope"></i> Kritik & Saran</button>
+            </div>
+
+            <!-- Tab Komentar Publik -->
+            <div class="ktab-content" id="formKomentar">
+              <h3 class="komentar-form-title">Tinggalkan Komentar</h3>
+              <p class="komentar-form-desc">Komentar Anda akan ditampilkan setelah dimoderasi oleh admin.</p>
+              <form id="publicCommentForm" novalidate>
+                <div class="form-row">
+                  <div class="komentar-field">
+                    <label for="cmtNama"><i class="fa-solid fa-user"></i> Nama Lengkap *</label>
+                    <input type="text" id="cmtNama" name="nama" class="komentar-input" placeholder="Nama Anda" required maxlength="60">
+                  </div>
+                  <div class="komentar-field">
+                    <label for="cmtEmail"><i class="fa-solid fa-envelope"></i> Email *</label>
+                    <input type="email" id="cmtEmail" name="email" class="komentar-input" placeholder="email@anda.com" required maxlength="100">
+                  </div>
+                </div>
+                <div class="komentar-field">
+                  <label for="cmtPesan"><i class="fa-solid fa-pen"></i> Komentar *</label>
+                  <textarea id="cmtPesan" name="komentar" class="komentar-input" rows="4" placeholder="Tulis komentar Anda di sini..." required maxlength="500"></textarea>
+                  <span class="char-count" id="cmtCharCount">0 / 500</span>
+                </div>
+                <div class="komentar-honeypot" aria-hidden="true">
+                  <input type="text" name="website" id="cmtHoneypot" tabindex="-1" autocomplete="off">
+                </div>
+                <div class="komentar-msg" id="cmtMsg"></div>
+                <button type="submit" class="btn btn-primary komentar-submit" id="cmtSubmitBtn">
+                  <i class="fa-solid fa-paper-plane"></i> Kirim Komentar
+                </button>
+              </form>
+            </div>
+
+            <!-- Tab Kritik & Saran -->
+            <div class="ktab-content hidden" id="formKritik">
+              <h3 class="komentar-form-title">Kritik & Saran</h3>
+              <p class="komentar-form-desc">Pesan Anda bersifat privat dan hanya dibaca oleh admin masjid.</p>
+              <form id="publicKritikForm" novalidate>
+                <div class="form-row">
+                  <div class="komentar-field">
+                    <label for="ksNama"><i class="fa-solid fa-user"></i> Nama Lengkap *</label>
+                    <input type="text" id="ksNama" name="nama" class="komentar-input" placeholder="Nama Anda" required maxlength="60">
+                  </div>
+                  <div class="komentar-field">
+                    <label for="ksEmail"><i class="fa-solid fa-envelope"></i> Email *</label>
+                    <input type="email" id="ksEmail" name="email" class="komentar-input" placeholder="email@anda.com" required maxlength="100">
+                  </div>
+                </div>
+                <div class="komentar-field">
+                  <label for="ksPesan"><i class="fa-solid fa-pen"></i> Pesan *</label>
+                  <textarea id="ksPesan" name="pesan" class="komentar-input" rows="5" placeholder="Tuliskan kritik atau saran Anda untuk perbaikan masjid..." required maxlength="1000"></textarea>
+                  <span class="char-count" id="ksCharCount">0 / 1000</span>
+                </div>
+                <div class="komentar-honeypot" aria-hidden="true">
+                  <input type="text" name="website2" id="ksHoneypot" tabindex="-1" autocomplete="off">
+                </div>
+                <div class="komentar-msg" id="ksMsg"></div>
+                <button type="submit" class="btn btn-primary komentar-submit" id="ksSubmitBtn">
+                  <i class="fa-solid fa-lock"></i> Kirim Secara Privat
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Daftar Komentar Publik -->
+          <div class="komentar-list-wrap reveal-right">
+            <div class="komentar-list-header">
+              <h3 class="komentar-list-title"><i class="fa-solid fa-comments"></i> Komentar Terbaru</h3>
+              <span class="komentar-count" id="komCount">0 komentar</span>
+            </div>
+            <div class="komentar-list" id="komList">
+              <!-- Komentar render dari main.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Banner -->
+    <div class="quote-banner" aria-label="Kutipan Hadits">
+      <div class="container">
+        <p class="quote-text">مَنْ بَنَى مَسْجِدًا لِلَّهِ بَنَى اللَّهُ لَهُ بَيْتًا فِي الْجَنَّةِ</p>
+        <p class="quote-translation">"Barangsiapa membangun masjid karena Allah, maka Allah akan membangunkan baginya
+          sebuah rumah di surga."</p>
+        <p class="quote-source">— HR. Bukhari &amp; Muslim</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer class="footer" aria-label="Footer">
+    <div class="footer-ornament" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div>
+          <div class="footer-brand">
+            <div class="footer-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C9 2 7 4 7 4H5v2l-3 1v14h4v-6h12v6h4V7l-3-1V4h-2S15 2 12 2zm0 2c2 0 3 1.5 3 1.5H9S10 4 12 4zM5 8l7-2 7 2v2H5V8zm1 4h12v1H6v-1z" />
+              </svg>
+            </div>
+            <div>
+              <div class="footer-name">MASJID AL AQOBAH 7</div>
+              <div class="footer-sub">Sei Selincah, Kalidoni, Kota Palembang</div>
+            </div>
+          </div>
+          <p class="footer-desc">Masjid Al Aqobah 7 hadir sebagai pusat kegiatan umat, tempat ibadah yang nyaman, dan
+            jantung kehidupan komunitas Muslim yang hangat dan berdampak.</p>
+          <div class="footer-socials" aria-label="Media Sosial">
+            <a href="#" class="social-btn" aria-label="YouTube Masjid Al Aqobah 7"><i class="fa-brands fa-youtube"
+                aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram Masjid Al Aqobah 7"><i class="fa-brands fa-instagram"
+                aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="Facebook Masjid Al Aqobah 7"><i class="fa-brands fa-facebook-f"
+                aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp Masjid Al Aqobah 7"><i class="fa-brands fa-whatsapp"
+                aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <nav aria-label="Link Cepat">
+          <p class="footer-heading">Menu Utama</p>
+          <ul class="footer-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="layanan.html">Layanan Masyarakat</a></li>
+            <li><a href="berita.html">Berita &amp; Informasi</a></li>
+            <li><a href="kegiatan.html">Kegiatan Masjid</a></li>
+            <li><a href="donasi.html">Donasi</a></li>
+          </ul>
+        </nav>
+
+        <!-- Layanan -->
+        <nav aria-label="Layanan">
+          <p class="footer-heading">Layanan Kami</p>
+          <ul class="footer-links">
+            <li><a href="layanan.html">Konsultasi Agama</a></li>
+            <li><a href="layanan.html">Kajian Ahad & Jumat</a></li>
+            <li><a href="layanan.html">Bank Beras & Sayur</a></li>
+            <li><a href="layanan.html">Remaja GEMMA</a></li>
+            <li><a href="layanan.html">Pendidikan Tahfidz</a></li>
+          </ul>
+        </nav>
+
+        <!-- Contact -->
+        <address>
+          <p class="footer-heading">Hubungi Kami</p>
+          <div class="footer-contact">
+            <div class="contact-item">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              <span>Jalan Taqwa Merah Mata RT 60 / RW 07, Sei Selincah, Kalidoni, Kota Palembang</span>
+            </div>
+            <div class="contact-item">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              <span><a href="https://wa.me/6285764280131" style="color:inherit">0857-6428-0131</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+              <span><a href="mailto:info@alaqobah7.id" style="color:inherit">info@alaqobah7.id</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="fa-regular fa-clock" aria-hidden="true"></i>
+              <span>Layanan: Setiap hari, 07:00 – 17:00 WIB</span>
+            </div>
+          </div>
+        </address>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© <span id="footerYear"></span> <span>Masjid Al Aqobah 7</span>. Seluruh Hak Cipta Dilindungi.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Kebijakan Privasi</a>
+          <a href="#">Syarat &amp; Ketentuan</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================
+       POP-UP IKLAN MODAL
+       ============================================= -->
+  <div class="popup-iklan-modal" id="popupIklanModal" role="dialog" aria-modal="true" aria-label="Informasi Masjid" aria-hidden="true">
+    <div class="popup-iklan-content">
+      <!-- X Close Button -->
+      <button class="popup-iklan-close" id="popupIklanClose" aria-label="Tutup iklan">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <!-- Target content filled by JS -->
+      <div id="popupIklanContainer"></div>
+
+      <!-- Close Button - Full Width -->
+      <button class="popup-iklan-close-btn" id="popupIklanCloseBtn" aria-label="Tutup">
+        <i class="fa-solid fa-xmark"></i> Tutup
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/supabase-db.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jadwal kegiatan rutin dan event mendatang Masjid Al Aqobah 7 — Kajian Subuh, Majelis Taklim, Jumat Berkah, MABIT, dan lebih banyak lagi.">
+  <title>Kegiatan Masjid | Masjid Al Aqobah 7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+  <style>
+    .jadwal-rutin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .jadwal-rutin-card { background: var(--white); border-radius: var(--radius-md); padding: 1.5rem 1.25rem; box-shadow: var(--shadow-sm); border-top: 3px solid var(--green-600); text-align: center; transition: var(--transition); }
+    .jadwal-rutin-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .jadwal-rutin-card:nth-child(even) { border-top-color: var(--gold); }
+    .jadwal-hari { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold-dark); font-weight: 700; margin-bottom: 0.3rem; }
+    .jadwal-nama { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; color: var(--green-800); margin-bottom: 0.5rem; }
+    .jadwal-waktu { font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.35rem; margin-bottom: 0.3rem; }
+    .jadwal-lokasi { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.35rem; }
+    @media (max-width: 768px) { .jadwal-rutin-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .jadwal-rutin-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar" aria-label="Navigasi Utama">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <div class="navbar-logo"><svg viewBox="0 0 24 24"><path d="M12 2C9 2 7 4 7 4H5v2l-3 1v14h4v-6h12v6h4V7l-3-1V4h-2S15 2 12 2zm0 2c2 0 3 1.5 3 1.5H9S10 4 12 4zM5 8l7-2 7 2v2H5V8zm1 4h12v1H6v-1z"/></svg></div>
+        <div class="navbar-brand-text">
+          <div class="navbar-brand-name">Al Aqobah 7</div>
+          <div class="navbar-brand-sub">Kalidoni, Palembang</div>
+        </div>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="layanan.html" class="nav-link">Layanan Masyarakat</a></li>
+        <li><a href="berita.html" class="nav-link">Berita</a></li>
+        <li><a href="kegiatan.html" class="nav-link active">Kegiatan Masjid</a></li>
+        <li><a href="donasi.html" class="nav-link">Donasi</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Buka menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <nav class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html" class="nav-link"><i class="fa-solid fa-house" style="width:20px"></i> Beranda</a>
+    <a href="layanan.html" class="nav-link"><i class="fa-solid fa-hands-helping" style="width:20px"></i> Layanan Masyarakat</a>
+    <a href="berita.html" class="nav-link"><i class="fa-solid fa-newspaper" style="width:20px"></i> Berita</a>
+    <a href="kegiatan.html" class="nav-link active"><i class="fa-solid fa-calendar-days" style="width:20px"></i> Kegiatan Masjid</a>
+    <a href="donasi.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="width:20px"></i> Donasi</a>
+  </nav>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Halaman Kegiatan">
+      <p class="breadcrumb"><a href="index.html">Beranda</a> <span>›</span> Kegiatan Masjid</p>
+      <h1>Kegiatan Masjid</h1>
+      <p>Jadwal lengkap kegiatan rutin dan event spesial Masjid Al Aqobah 7. Mari hadir dan meramaikan masjid kita bersama.</p>
+    </section>
+
+    <!-- JADWAL RUTIN -->
+    <section class="section" style="background:var(--off-white)" aria-labelledby="jadwal-rutin-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Tiap Pekan</p>
+          <h2 class="section-title" id="jadwal-rutin-title">Jadwal Kegiatan Rutin</h2>
+          <p class="section-subtitle">Kegiatan yang berlangsung secara rutin setiap minggu. Terbuka untuk seluruh jamaah dan masyarakat umum.</p>
+        </div>
+        <div class="jadwal-rutin-grid">
+          <div class="jadwal-rutin-card reveal">
+            <div class="jadwal-hari">Senin – Jumat</div>
+            <h3 class="timeline-title">TPA & Tahfiz Anak</h3>
+            <div class="jadwal-waktu"><i class="fa-regular fa-clock"></i> 15:30 – 17:00 WIB</div>
+            <div class="jadwal-lokasi"><i class="fa-solid fa-location-dot"></i> Ruang Kelas TPA</div>
+          </div>
+          <div class="jadwal-rutin-card reveal reveal-delay-1">
+            <div class="jadwal-hari">Selasa &amp; Kamis</div>
+            <div class="jadwal-nama">Kajian Kitab Kuning</div>
+            <div class="jadwal-waktu"><i class="fa-regular fa-clock"></i> 20:00 – 21:30 WIB</div>
+            <div class="jadwal-lokasi"><i class="fa-solid fa-location-dot"></i> Aula Utama Masjid</div>
+          </div>
+          <div class="jadwal-rutin-card reveal reveal-delay-2">
+            <div class="jadwal-hari">Rabu</div>
+            <h3 class="timeline-title">Bank Beras 1 Canting</h3>
+            <div class="jadwal-waktu"><i class="fa-regular fa-clock"></i> 09:00 – 11:00 WIB</div>
+            <div class="jadwal-lokasi"><i class="fa-solid fa-location-dot"></i> Aula Lantai 2</div>
+          </div>
+          <div class="jadwal-rutin-card reveal reveal-delay-1">
+            <div class="jadwal-hari">Kamis Malam</div>
+            <div class="jadwal-nama">Pengajian Yasin &amp; Tahlil</div>
+            <div class="jadwal-waktu"><i class="fa-regular fa-clock"></i> 20:00 – 21:00 WIB</div>
+            <div class="jadwal-lokasi"><i class="fa-solid fa-location-dot"></i> Aula Utama Masjid</div>
+          </div>
+          <div class="jadwal-rutin-card reveal reveal-delay-2">
+            <div class="jadwal-hari">Jumat</div>
+            <h3 class="timeline-title">Kajian Ahad Subuh</h3>
+            <div class="jadwal-waktu"><i class="fa-regular fa-clock"></i> 05:00 – 06:30 WIB</div>
+            <div class="jadwal-lokasi"><i class="fa-solid fa-location-dot"></i> Aula Utama Masjid</div>
+          </div>
+          <div class="jadwal-rutin-card reveal reveal-delay-3">
+            <div class="jadwal-hari">Sabtu</div>
+            <h3 class="timeline-title">Kajian Remaja GEMMA</h3>
+            <div class="jadwal-waktu"><i class="fa-regular fa-clock"></i> 16:00 – 17:30 WIB</div>
+            <div class="jadwal-lokasi"><i class="fa-solid fa-location-dot"></i> Ruang Serba Guna</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT MENDATANG -->
+    <section class="section" aria-labelledby="event-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Segera Hadir</p>
+          <h2 class="section-title" id="event-title">Event &amp; Kegiatan Mendatang</h2>
+          <p class="section-subtitle">Tandai kalender Anda dan bergabunglah dalam kegiatan spesial berikut ini.</p>
+        </div>
+
+        <!-- Filter -->
+        <div class="kegiatan-filter filter-tabs" role="group" aria-label="Filter jenis kegiatan">
+          <button class="filter-tab active" data-category="semua" id="filter-semua">Semua</button>
+          <button class="filter-tab" data-category="Kajian Rutin" id="filter-rutin">Kajian Rutin</button>
+          <button class="filter-tab" data-category="Event Khusus" id="filter-khusus">Event Khusus</button>
+        </div>
+
+        <!-- Dynamic kegiatan dari admin — jika ada data akan diisi oleh main.js -->
+        <div class="berita-full-grid" id="kegiatanFullGrid" role="list" aria-label="Daftar kegiatan mendatang">
+          <!-- injected by main.js -->
+          <div style="grid-column:1/-1;text-align:center;padding:3rem 0;" class="kegiatan-static-fallback">
+            <!-- Static fallback cards (shown when no admin data) -->
+            <div class="berita-full-grid" role="list" id="kegiatanStaticList">
+
+              <article class="berita-card reveal" role="listitem">
+                <div class="berita-thumb">
+                  <div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
+                    <i class="fa-solid fa-calendar-days" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
+                  </div>
+                  <span class="berita-badge badge-rutin">Kajian Rutin</span>
+                </div>
+                <div class="berita-body">
+                  <p class="berita-meta"><i class="fa-regular fa-calendar"></i> 14 Maret 2026 &nbsp;·&nbsp; <i class="fa-regular fa-clock"></i> 05:00 WIB</p>
+                  <h3 style="margin-bottom:0.5rem;">Kajian Subuh Pekanan — Tafsir Al-Mulk</h3>
+                  <p style="margin-bottom:0.6rem;font-size:0.875rem;"><i class="fa-solid fa-location-dot"></i> Aula Utama Masjid</p>
+                  <p>Kajian tafsir Al-Qur'an Surat Al-Mulk beserta tadabbur maknanya. Tersedia sarapan bubur ayam gratis setelah kajian.</p>
+                </div>
+              </article>
+
+              <article class="berita-card reveal reveal-delay-1" role="listitem">
+                <div class="berita-thumb">
+                  <div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
+                    <i class="fa-solid fa-calendar-days" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
+                  </div>
+                  <span class="berita-badge badge-rutin">Kajian Rutin</span>
+                </div>
+                <div class="berita-body">
+                  <p class="berita-meta"><i class="fa-regular fa-calendar"></i> 17 Maret 2026 &nbsp;·&nbsp; <i class="fa-regular fa-clock"></i> 09:00 WIB</p>
+                  <h3 style="margin-bottom:0.5rem;">Majelis Taklim Ibu-Ibu — Keluarga Sakinah</h3>
+                  <p style="margin-bottom:0.6rem;font-size:0.875rem;"><i class="fa-solid fa-location-dot"></i> Aula Lantai 2</p>
+                  <p>Pengajian khusus ibu-ibu dengan tema "Membangun Keluarga Sakinah Mawaddah Warahmah". Disediakan snack ringan.</p>
+                </div>
+              </article>
+
+              <article class="berita-card reveal reveal-delay-2" role="listitem">
+                <div class="berita-thumb">
+                  <div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
+                    <i class="fa-solid fa-calendar-days" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
+                  </div>
+                  <span class="berita-badge badge-khusus">Event Khusus</span>
+                </div>
+                <div class="berita-body">
+                  <p class="berita-meta"><i class="fa-regular fa-calendar"></i> 20 Maret 2026 &nbsp;·&nbsp; <i class="fa-regular fa-clock"></i> 13:00 WIB</p>
+                  <h3 style="margin-bottom:0.5rem;">Jumat Berkah &amp; Santunan Dhuafa Maret 2026</h3>
+                  <p style="margin-bottom:0.6rem;font-size:0.875rem;"><i class="fa-solid fa-location-dot"></i> Halaman &amp; Aula Masjid</p>
+                  <p>Program Jumat Berkah bulanan: ceramah singkat, makan siang gratis, dan penyerahan santunan kepada kaum dhuafa.</p>
+                </div>
+              </article>
+
+              <article class="berita-card reveal reveal-delay-3" role="listitem">
+                <div class="berita-thumb">
+                  <div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
+                    <i class="fa-solid fa-calendar-days" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
+                  </div>
+                  <span class="berita-badge badge-khusus">Event Khusus</span>
+                </div>
+                <div class="berita-body">
+                  <p class="berita-meta"><i class="fa-regular fa-calendar"></i> 25 Maret 2026 &nbsp;·&nbsp; <i class="fa-regular fa-clock"></i> 21:00 WIB</p>
+                  <h3 style="margin-bottom:0.5rem;">Malam Bina Iman &amp; Taqwa (MABIT) Remaja</h3>
+                  <p style="margin-bottom:0.6rem;font-size:0.875rem;"><i class="fa-solid fa-location-dot"></i> Masjid Al Aqobah 7</p>
+                  <p>MABIT untuk remaja: sholat malam berjamaah, tausiyah, tadabbur Al-Qur'an, muhasabah, dan sahur bersama. Pendaftaran wajib!</p>
+                </div>
+              </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CTA Daftar -->
+    <div class="cta-banner">
+      <div class="container" style="text-align:center">
+        <h2>Ingin Daftar atau Tanya Jadwal?</h2>
+        <p>Hubungi panitia kegiatan melalui WhatsApp atau kunjungi sekretariat masjid setiap hari kerja.</p>
+        <a href="https://wa.me/628123456789" class="btn btn-dark" id="btn-whatsapp-kegiatan">
+          <i class="fa-brands fa-whatsapp"></i> Hubungi Kami
+        </a>
+      </div>
+    </div>
+
+    <!-- Quote Banner -->
+    <div class="quote-banner">
+      <div class="container">
+        <p class="quote-text">إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ</p>
+        <p class="quote-translation">"Sesungguhnya orang-orang mukmin itu bersaudara."</p>
+        <p class="quote-source">— QS. Al-Hujurat: 10</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-ornament" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><div class="footer-logo"><svg viewBox="0 0 24 24"><path d="M12 2C9 2 7 4 7 4H5v2l-3 1v14h4v-6h12v6h4V7l-3-1V4h-2S15 2 12 2zm0 2c2 0 3 1.5 3 1.5H9S10 4 12 4zM5 8l7-2 7 2v2H5V8zm1 4h12v1H6v-1z"/></svg></div>            <div><div class="footer-name">MASJID AL AQOBAH 7</div><div class="footer-sub">Sei Selincah, Kalidoni, Kota Palembang</div></div></div>
+          <p class="footer-desc">Masjid Al Aqobah 7 hadir sebagai pusat kegiatan umat dan jantung kehidupan komunitas Muslim yang hangat.</p>
+          <div class="footer-socials"><a href="#" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a><a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></div>
+        </div>
+        <nav><p class="footer-heading">Menu Utama</p><ul class="footer-links"><li><a href="index.html">Beranda</a></li><li><a href="layanan.html">Layanan Masyarakat</a></li><li><a href="berita.html">Berita</a></li><li><a href="kegiatan.html">Kegiatan Masjid</a></li><li><a href="donasi.html">Donasi</a></li></ul></nav>
+        <nav><p class="footer-heading">Layanan</p><ul class="footer-links"><li><a href="layanan.html">Kajian Ahad & Jumat</a></li><li><a href="layanan.html">Bank Beras & Sayur</a></li><li><a href="layanan.html">Remaja GEMMA</a></li><li><a href="layanan.html">Pendidikan Tahfidz</a></li></ul></nav>
+        <address><p class="footer-heading">Hubungi Kami</p><div class="footer-contact"><div class="contact-item"><i class="fa-solid fa-location-dot"></i><span>Jalan Taqwa Merah Mata RT 60/07, Sei Selincah, Kalidoni, Palembang</span></div><div class="contact-item"><i class="fa-brands fa-whatsapp"></i><span>0857-6428-0131</span></div><div class="contact-item"><i class="fa-regular fa-envelope"></i><span>info@alaqobah7.id</span></div></div></address>
+      </div>
+      <div class="footer-bottom"><p class="footer-copy">© 2025 <span>Masjid Al Aqobah 7</span>. Seluruh Hak Cipta Dilindungi.</p></div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/supabase-db.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
+

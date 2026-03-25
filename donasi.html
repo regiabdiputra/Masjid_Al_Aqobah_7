@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Salurkan infak dan sedekah Anda untuk mendukung program-program kebaikan Masjid Al Aqobah 7.">
+  <title>Donasi | Masjid Al Aqobah 7</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="donasi.css">
+</head>
+<body>
+
+  <!-- =============================================
+       NAVBAR
+       ============================================= -->
+  <nav class="navbar scrolled" id="navbar" aria-label="Navigasi Utama">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <div class="navbar-logo">
+          <svg viewBox="0 0 24 24"><path d="M12 2C9 2 7 4 7 4H5v2l-3 1v14h4v-6h12v6h4V7l-3-1V4h-2S15 2 12 2zm0 2c2 0 3 1.5 3 1.5H9S10 4 12 4zM5 8l7-2 7 2v2H5V8zm1 4h12v1H6v-1z"/></svg>
+        </div>
+        <div class="navbar-brand-text">
+          <div class="navbar-brand-name">Al Aqobah 7</div>
+          <div class="navbar-brand-sub">Kalidoni, Palembang</div>
+        </div>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="layanan.html" class="nav-link">Layanan Masyarakat</a></li>
+        <li><a href="berita.html" class="nav-link">Berita</a></li>
+        <li><a href="kegiatan.html" class="nav-link">Kegiatan Masjid</a></li>
+        <li><a href="donasi.html" class="nav-link active">Donasi</a></li>
+      </ul>
+      <div class="navbar-actions" style="display: flex; align-items: center; gap: 0.5rem;">
+        <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Ganti Tema" title="Ganti Tema">
+          <i class="fa-solid fa-palette"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Buka menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <nav class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html" class="nav-link"><i class="fa-solid fa-house" style="width:20px"></i> Beranda</a>
+    <a href="layanan.html" class="nav-link"><i class="fa-solid fa-hands-helping" style="width:20px"></i> Layanan Masyarakat</a>
+    <a href="berita.html" class="nav-link"><i class="fa-solid fa-newspaper" style="width:20px"></i> Berita</a>
+    <a href="kegiatan.html" class="nav-link"><i class="fa-solid fa-calendar-days" style="width:20px"></i> Kegiatan Masjid</a>
+    <a href="donasi.html" class="nav-link active"><i class="fa-solid fa-hand-holding-dollar" style="width:20px"></i> Donasi</a>
+  </nav>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Halaman Donasi">
+      <p class="breadcrumb"><a href="index.html">Beranda</a> <span>›</span> Donasi & Infaq</p>
+      <h1>Salurkan Kebaikan Anda</h1>
+      <p>Pilih program donasi dan raih pahala jariyah bersama Masjid Al Aqobah 7.</p>
+    </section>
+
+    <!-- DONASI PROGRAM LIST -->
+    <section class="section" style="background:#F9F7F2">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Program Tersedia</p>
+          <h2 class="section-title">Program Infaq & Sedekah</h2>
+        </div>
+
+        <!-- Daftar program donasi akan di-render oleh JavaScript -->
+        <div class="donasi-grid" id="donasiGrid">
+          <!-- Placeholder Data akan diganti dengan JS -->
+          <div style="text-align:center; grid-column: 1/-1; padding: 3rem;">
+            <i class="fa-solid fa-spinner fa-spin fa-2x" style="color:var(--green-700)"></i>
+            <p style="margin-top: 1rem;">Memuat program donasi...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================
+       MODAL DONASI FLOW
+       ============================================= -->
+  <div class="modal-overlay" id="donasiModal">
+    <div class="modal-content">
+      
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h3 id="modalTitle">Form Donasi</h3>
+        <button class="modal-close" onclick="closeDonasiModal()">&times;</button>
+      </div>
+
+      <!-- BODY MODAL -->
+      <div class="modal-body" id="modalBody">
+        
+        <!-- STEP 1: FORM DATA DONATUR & NOMINAL -->
+        <div id="step1">
+          <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.5rem;">
+            Anda akan berdonasi untuk program: <strong id="selectedProgramName" style="color:var(--green-800)">-</strong>
+          </p>
+          
+          <form id="donasiForm" onsubmit="handleDonasiSubmit(event)">
+            <input type="hidden" id="programId">
+            
+            <div class="form-group">
+              <label for="namaDonatur">Nama Lengkap</label>
+              <input type="text" id="namaDonatur" class="form-control" placeholder="Hamba Allah / Nama Anda" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="emailDonatur">Email <span style="font-weight:400; font-size:0.8rem">(Opsional untuk tanda terima)</span></label>
+              <input type="email" id="emailDonatur" class="form-control" placeholder="email@contoh.com">
+            </div>
+
+            <div class="form-group">
+              <label>Nominal Donasi (Rp)</label>
+              <div class="nominal-presets">
+                <button type="button" class="preset-btn" onclick="setNominal(50000)">50 Rb</button>
+                <button type="button" class="preset-btn" onclick="setNominal(100000)">100 Rb</button>
+                <button type="button" class="preset-btn" onclick="setNominal(500000)">500 Rb</button>
+              </div>
+              <input type="number" id="nominalDonasi" class="form-control" placeholder="Masukkan nominal lainnya..." min="10000" required>
+              <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.3rem;">Minimal donasi Rp 10.000</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1rem;">Lanjutkan Pembayaran <i class="fa-solid fa-arrow-right"></i></button>
+          </form>
+        </div>
+
+        <!-- STEP 2: METODE PEMBAYARAN & UPLOAD BUKTI -->
+        <div id="step2" style="display:none;">
+          <div class="payment-instruction">
+            <p>Silakan Lakukan Pembayaran Sebesar:</p>
+            <h2 class="payment-amount" id="tagihanNominal">Rp 0</h2>
+            <div class="unique-code-box">
+              <p style="margin:0;">Nominal di atas sudah termasuk kode unik donasi untuk mempercepat verifikasi.</p>
+            </div>
+          </div>
+
+          <div class="qr-box">
+            <!-- Asumsi kita pakai QR statis masjid sbg simulasi -->
+            <img src="QR.png" alt="QRIS Masjid Pembangunan">
+            <p style="font-size:0.85rem; margin-top:0.75rem; color:var(--text-muted);">
+              Scan QRIS di atas melalui M-Banking atau E-Wallet (OVO, GoPay, Dana, LinkAja, ShopeePay).
+            </p>
+          </div>
+
+          <hr style="border:none; border-top:1px dashed #CBD5E1; margin:1.5rem 0;">
+
+          <form id="uploadBuktiForm" onsubmit="handleUploadSubmit(event)">
+            <div class="form-group">
+              <label>Upload Bukti Transfer</label>
+              <div class="file-upload-wrapper" onclick="document.getElementById('inputBukti').click()">
+                <i class="fa-solid fa-cloud-arrow-up fa-2x" style="color:var(--green-500); margin-bottom:0.8rem;"></i>
+                <p style="margin:0; font-weight:600; color:var(--text-muted);" id="filenameDisplay">Klik untuk memilih foto (.jpg, .png)</p>
+                <input type="file" id="inputBukti" accept="image/*" onchange="previewImage(this)" required>
+              </div>
+              <img id="imagePreview" class="preview-image" alt="Preview Bukti">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1rem;">Kirim Bukti Donasi <i class="fa-solid fa-paper-plane"></i></button>
+            <button type="button" class="btn btn-outline" style="width:100%; margin-top:0.5rem;" onclick="goBackToStep1()">Batal / Ubah Nominal</button>
+          </form>
+        </div>
+
+        <!-- STEP 3: SUCCESS MESAAGE -->
+        <div id="step3" class="success-message" style="display:none;">
+          <i class="fa-solid fa-circle-check success-icon"></i>
+          <h3>Alhamdulillah, Terima Kasih!</h3>
+          <p style="color:var(--text-muted); margin-bottom:1.5rem;">
+            Data donasi berserta bukti transfer telah kami terima dan sedang menunggu verifikasi oleh admin. Semoga Allah SWT membalas dengan kebaikan yang berlipat ganda.
+          </p>
+          <button class="btn btn-primary" onclick="closeDonasiModal()">Selesai</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-ornament" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <div class="footer-logo"><svg viewBox="0 0 24 24"><path d="M12 2C9 2 7 4 7 4H5v2l-3 1v14h4v-6h12v6h4V7l-3-1V4h-2S15 2 12 2zm0 2c2 0 3 1.5 3 1.5H9S10 4 12 4zM5 8l7-2 7 2v2H5V8zm1 4h12v1H6v-1z"/></svg></div>
+            <div><div class="footer-name">MASJID AL AQOBAH 7</div><div class="footer-sub">Sei Selincah, Kalidoni, Palembang</div></div>
+          </div>
+          <p class="footer-desc">Masjid Al Aqobah 7 hadir sebagai pusat kegiatan umat, tempat ibadah yang nyaman, dan jantung kehidupan komunitas Muslim.</p>
+        </div>
+        <address><p class="footer-heading">Hubungi Kami</p>
+          <div class="footer-contact">
+            <div class="contact-item"><i class="fa-brands fa-whatsapp"></i><span>0857-6428-0131</span></div>
+            <div class="contact-item"><i class="fa-regular fa-envelope"></i><span>info@alaqobah7.id</span></div>
+          </div>
+        </address>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 <span>Masjid Al Aqobah 7</span>. Seluruh Hak Cipta Dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/supabase-db.js"></script>
+  <script src="main.js"></script>
+  <script src="donasi.js"></script>
+</body>
+</html>
+

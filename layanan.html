@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Layanan masyarakat Masjid Al Aqobah 7: Konsultasi Agama, Kajian Rutin, Santunan Dhuafa, Pengurusan Jenazah, Nikah & KUA, TPA Al-Qur'an.">
+  <title>Layanan Masyarakat | Masjid Al Aqobah 7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar" aria-label="Navigasi Utama">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <div class="navbar-logo">
+          <svg viewBox="0 0 24 24"><path d="M12 2C9 2 7 4 7 4H5v2l-3 1v14h4v-6h12v6h4V7l-3-1V4h-2S15 2 12 2zm0 2c2 0 3 1.5 3 1.5H9S10 4 12 4zM5 8l7-2 7 2v2H5V8zm1 4h12v1H6v-1z"/></svg>
+        </div>
+        <div class="navbar-brand-text">
+          <div class="navbar-brand-name">Al Aqobah 7</div>
+          <div class="navbar-brand-sub">Kalidoni, Palembang</div>
+        </div>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="layanan.html" class="nav-link active">Layanan Masyarakat</a></li>
+        <li><a href="berita.html" class="nav-link">Berita</a></li>
+        <li><a href="kegiatan.html" class="nav-link">Kegiatan Masjid</a></li>
+        <li><a href="donasi.html" class="nav-link">Donasi</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Buka menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <nav class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html" class="nav-link"><i class="fa-solid fa-house" style="width:20px"></i> Beranda</a>
+    <a href="layanan.html" class="nav-link active"><i class="fa-solid fa-hands-helping" style="width:20px"></i> Layanan Masyarakat</a>
+    <a href="berita.html" class="nav-link"><i class="fa-solid fa-newspaper" style="width:20px"></i> Berita</a>
+    <a href="kegiatan.html" class="nav-link"><i class="fa-solid fa-calendar-days" style="width:20px"></i> Kegiatan Masjid</a>
+    <a href="donasi.html" class="nav-link"><i class="fa-solid fa-hand-holding-dollar" style="width:20px"></i> Donasi</a>
+  </nav>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Halaman Layanan">
+      <p class="breadcrumb"><a href="index.html">Beranda</a> <span>›</span> Layanan Masyarakat</p>
+      <h1>Layanan Masyarakat</h1>
+      <p>Kami hadir untuk melayani jamaah dan masyarakat — karena masjid adalah rumah kita bersama.</p>
+    </section>
+
+    <!-- LAYANAN GRID -->
+    <section class="section" aria-labelledby="layanan-page-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Apa yang Kami Tawarkan</p>
+          <h2 class="section-title" id="layanan-page-title">Semua Layanan Kami</h2>
+          <p class="section-subtitle">Berbagai layanan tersedia secara gratis untuk jamaah dan masyarakat di sekitar Masjid Al Aqobah 7.</p>
+        </div>
+
+        <!-- Container Utama (Class berita-full-grid untuk styling seragam) -->
+        <div class="berita-full-grid" id="layananFullGrid" role="list" aria-label="Daftar layanan masjid">
+
+          <!-- Static fallback cards (akan digantikan JS jika ada data admin) -->
+          <article class="berita-card reveal" role="listitem">
+            <div class="berita-thumb">
+              <div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-bowl-rice" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
+              </div>
+              <span class="berita-badge">Layanan</span>
+            </div>
+            <div class="berita-body">
+              <h3 style="margin-bottom:0.5rem;">Bank Beras "1 Hari 1 Canting"</h3>
+              <p>Program pemberdayaan sosial inovatif dengan mengumpulkan beras dari jamaah untuk didistribusikan kepada keluarga kurang mampu secara rutin.</p>
+            </div>
+          </article>
+
+          <article class="berita-card reveal" role="listitem">
+            <div class="berita-thumb">
+              <div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-leaf" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
+              </div>
+              <span class="berita-badge">Layanan</span>
+            </div>
+            <div class="berita-body">
+              <h3 style="margin-bottom:0.5rem;">Berbagi Sayur Gratis</h3>
+              <p>Program sosial mingguan berbagi puluhan paket sayuran segar gratis untuk jamaah dan masyarakat sekitar demi memenuhi kebutuhan gizi dapur keluarga.</p>
+            </div>
+          </article>
+
+          <article class="berita-card reveal" role="listitem">
+            <div class="berita-thumb">
+              <div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-motorcycle" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
+              </div>
+              <span class="berita-badge">Layanan</span>
+            </div>
+            <div class="berita-body">
+              <h3 style="margin-bottom:0.5rem;">Cuci Motor Bayar Seikhlasnya</h3>
+              <p>Fasilitas cuci motor di area masjid dengan sistem bayar seutuhnya secara seikhlasnya. Program ini sekaligus menjadi wadah pemberdayaan ekonomi jamaah yang mengelola.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner">
+      <div class="container" style="text-align:center">
+        <h2>Ada Kebutuhan Khusus?</h2>
+        <p>Hubungi kami langsung melalui WhatsApp atau kunjungi kantor sekretariat masjid. Tim kami siap membantu dengan sepenuh hati.</p>
+        <a href="https://wa.me/6285764280131" class="btn btn-dark" id="btn-whatsapp-layanan">
+          <i class="fa-brands fa-whatsapp"></i> Chat di WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Quote Banner -->
+    <div class="quote-banner">
+      <div class="container">
+        <p class="quote-text">إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ</p>
+        <p class="quote-translation">"Sesungguhnya yang memakmurkan masjid Allah hanyalah orang-orang yang beriman kepada Allah dan hari akhir."</p>
+        <p class="quote-source">— QS. At-Taubah: 18</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-ornament" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <div class="footer-logo"><svg viewBox="0 0 24 24"><path d="M12 2C9 2 7 4 7 4H5v2l-3 1v14h4v-6h12v6h4V7l-3-1V4h-2S15 2 12 2zm0 2c2 0 3 1.5 3 1.5H9S10 4 12 4zM5 8l7-2 7 2v2H5V8zm1 4h12v1H6v-1z"/></svg></div>
+            <div><div class="footer-name">MASJID AL AQOBAH 7</div><div class="footer-sub">Sei Selincah, Kalidoni, Kota Palembang</div></div>
+          </div>
+          <p class="footer-desc">Masjid Al Aqobah 7 hadir sebagai pusat kegiatan umat, tempat ibadah yang nyaman, dan jantung kehidupan komunitas Muslim.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <nav><p class="footer-heading">Menu Utama</p><ul class="footer-links"><li><a href="index.html">Beranda</a></li><li><a href="layanan.html">Layanan Masyarakat</a></li><li><a href="berita.html">Berita</a></li><li><a href="kegiatan.html">Kegiatan Masjid</a></li><li><a href="donasi.html">Donasi</a></li></ul></nav>
+        <nav><p class="footer-heading">Layanan</p><ul class="footer-links"><li><a href="layanan.html">Kajian Ahad & Jumat</a></li><li><a href="layanan.html">Bank Beras & Sayur</a></li><li><a href="layanan.html">Remaja GEMMA</a></li><li><a href="layanan.html">Pendidikan Tahfidz</a></li></ul></nav>
+        <address><p class="footer-heading">Hubungi Kami</p><div class="footer-contact"><div class="contact-item"><i class="fa-solid fa-location-dot"></i><span>Jalan Taqwa Merah Mata RT 60/07, Sei Selincah, Kalidoni, Palembang</span></div><div class="contact-item"><i class="fa-brands fa-whatsapp"></i><span>0857-6428-0131</span></div><div class="contact-item"><i class="fa-regular fa-envelope"></i><span>info@alaqobah7.id</span></div></div></address>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 <span>Masjid Al Aqobah 7</span>. Seluruh Hak Cipta Dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/supabase-db.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
+
