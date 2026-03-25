@@ -194,17 +194,27 @@
     <!-- =============================================
        (BANNER INLINE DIHAPUS, DIGANTIKAN POP-UP)
        ============================================= -->    <!-- =============================================
-       SECTION — VIDEO TERKINI
+       SECTION — KONTEN UTAMA (FEATURED)
        ============================================= -->
-    <section class="section video-section" id="video-terkini" aria-labelledby="video-title" style="display:none">
+    <section class="section konten-utama-section" id="konten-utama" aria-labelledby="konten-utama-title">
       <div class="container">
         <div class="section-header reveal">
-          <p class="section-label"><i class="fa-brands fa-instagram"></i> &nbsp;Media Sosial</p>
-          <h2 class="section-title" id="video-title">Video Terkini</h2>
-          <p class="section-subtitle">Ikuti konten video terbaru dari akun Instagram resmi Masjid Al Aqobah 7.</p>
+          <p class="section-label"><i class="fa-solid fa-fire"></i> &nbsp;Terbaru & Terkini</p>
+          <h2 class="section-title" id="konten-utama-title">Pusat Informasi Masjid</h2>
+          <p class="section-subtitle">Berita, kajian, dan wawasan Islami terkini dari Masjid Al Aqobah 7.</p>
         </div>
-        <div class="video-grid" id="videoGrid">
-          <!-- Render from main.js -->
+        
+        <div class="konten-utama-grid" id="kontenUtamaGrid">
+            <!-- Disuntikkan via main.js -->
+            <div style="grid-column:1/-1; text-align:center; padding:2rem;">
+              <i class="fa-solid fa-spinner fa-spin fa-2x" style="color:var(--green-700)"></i>
+            </div>
+        </div>
+        
+        <div style="text-align:center;margin-top:2.5rem">
+          <a href="berita.html" class="btn btn-outline-green">
+            <i class="fa-solid fa-newspaper"></i> Lihat Semua Berita
+          </a>
         </div>
       </div>
     </section>

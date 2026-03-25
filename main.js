@@ -501,7 +501,10 @@ async function loadDynamicData() {
             if (arab && beranda.ayat) arab.textContent = beranda.ayat;
             
             const title = document.querySelector('.hero-title');
-            if (title && beranda.namaMasjid) title.innerHTML = beranda.namaMasjid;
+            if (title && beranda.namaMasjid) {
+                // Autobreak 'Masjid Al Aqobah 7' into 2 lines elegantly
+                title.innerHTML = beranda.namaMasjid.replace(/(Masjid)\s+/i, '$1<br>');
+            }
             
             const tagline = document.querySelector('.hero-tagline');
             if (tagline && beranda.tagline) tagline.innerHTML = beranda.tagline;
@@ -659,6 +662,81 @@ async function loadDynamicData() {
     if (beritaContainer) {
         if (berita && berita.length > 0) {
             const pubBerita = berita.filter(b => b.status === 'Publikasi').sort((a,b) => new Date(b.tanggal) - new Date(a.tanggal));
+            
+            // --- KONTEN UTAMA (FEATURED GRID) ---
+            const kontenUtamaContainer = document.getElementById('kontenUtamaGrid');
+            if (kontenUtamaContainer && isIndex) {
+                const featuredData = pubBerita[0];
+                const sideDataList = pubBerita.slice(1, 4);
+
+                if (featuredData) {
+                    const fImgArr = featuredData.images || featuredData.foto || [];
+                    const fThumb = (fImgArr.length > 0) ? fImgArr[0] : (featuredData.thumbnail || '');
+                    const hasFImg = !!fThumb;
+                    
+                    const featuredHTML = `
+                        <a href="javascript:void(0)" class="konten-featured" data-berita-id="${featuredData.id}">
+                            <div class="konten-featured-img">
+                                ${hasFImg ? `<img src="${fThumb}" alt="${escapeHtml(featuredData.judul)}" loading="lazy" onerror="this.parentElement.style.display='none'">` : '<i class="fa-solid fa-newspaper" style="color:var(--gold);font-size:4rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"></i>'}
+                            </div>
+                            <div class="konten-overlay">
+                                <span class="konten-label">${featuredData.kategori}</span>
+                                <h3 class="konten-title-large">${escapeHtml(featuredData.judul)}</h3>
+                                <div class="konten-meta">
+                                    <i class="fa-regular fa-calendar"></i> ${featuredData.tanggal} &nbsp;·&nbsp;
+                                    <i class="fa-regular fa-user"></i> Admin
+                                </div>
+                            </div>
+                        </a>
+                    `;
+
+                    let sideHTML = '';
+                    if (sideDataList.length > 0) {
+                        sideHTML = `<div class="konten-side-list">` + sideDataList.map(b => {
+                            const sImgArr = b.images || b.foto || [];
+                            const sThumb = (sImgArr.length > 0) ? sImgArr[0] : (b.thumbnail || '');
+                            const hasSImg = !!sThumb;
+                            return `
+                                <a href="javascript:void(0)" class="konten-side-item" data-berita-id="${b.id}">
+                                    <div class="konten-side-img-wrap">
+                                        ${hasSImg ? `<img src="${sThumb}" alt="${escapeHtml(b.judul)}" loading="lazy">` : '<i class="fa-solid fa-newspaper" style="color:rgba(255,255,255,0.5);font-size:2rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"></i>'}
+                                        <span class="konten-side-label">${b.kategori}</span>
+                                    </div>
+                                    <div class="konten-side-info">
+                                        <h4 class="konten-side-title">${escapeHtml(b.judul)}</h4>
+                                        <div class="konten-side-date">
+                                            <i class="fa-regular fa-calendar"></i> ${b.tanggal}
+                                        </div>
+                                    </div>
+                                </a>
+                            `;
+                        }).join('') + `</div>`;
+                    }
+
+                    kontenUtamaContainer.innerHTML = featuredHTML + sideHTML;
+
+                    // Bind click for modal in Konten Utama
+                    kontenUtamaContainer.querySelectorAll('[data-berita-id]').forEach(card => {
+                        card.addEventListener('click', () => {
+                            const id = card.dataset.beritaId;
+                            const item = pubBerita.find(b => String(b.id) === String(id));
+                            if (!item) return;
+                            const tanggalFmt = new Date(item.tanggal).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+                            const bodyContent = item.deskripsi_lengkap || item.isi || '';
+                            const fallbackText = item.deskripsi_singkat || '';
+                            openContentModal({
+                                judul: item.judul, badge: item.kategori, tanggal: tanggalFmt,
+                                isi: bodyContent || `<p>${escapeHtml(fallbackText)}</p>`, foto: item.images || item.foto || [], logo: item.logo || null
+                            });
+                        });
+                    });
+                } else {
+                    kontenUtamaContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#888; padding:2rem 0;">Belum ada konten informasi yang dipublikasikan.</p>';
+                }
+            }
+
+            // --- STANDARD BERITA (LOWER SECTION) ---
+            // If it's index, we already used top 4 for 'Konten Utama', maybe show next 3 for 'Berita Terkini' section or just show the same top 3. Let's show the standard top 3 for the 'Berita Terkini' (or slice from index 4 if we want unique).
             const displayBerita = isIndex ? pubBerita.slice(0, 3) : pubBerita;
 
             if (displayBerita.length > 0) {
