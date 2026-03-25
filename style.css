@@ -757,7 +757,8 @@ h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  height: 580px; /* Tall height for portrait reel */
+  aspect-ratio: 9/16; /* True portrait auto-fit */
+  height: auto;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   display: block;
   text-decoration: none;
@@ -765,7 +766,7 @@ h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
   border: 1px solid rgba(27,67,50,0.08);
 }
 @media (max-width: 768px) {
-  .konten-featured { height: 480px; border-radius: var(--radius-md); }
+  .konten-featured { border-radius: var(--radius-md); max-height: 500px; }
 }
 .konten-featured:hover {
   transform: translateY(-5px) scale(1.01);
@@ -806,11 +807,16 @@ h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
 }
 .konten-title-large {
   font-family: var(--font-heading);
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  font-weight: 800;
-  line-height: 1.3;
+  font-size: 1.05rem; /* Smaller and proportional */
+  font-weight: 700;
+  line-height: 1.45;
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .konten-meta {
   font-size: 0.85rem;
