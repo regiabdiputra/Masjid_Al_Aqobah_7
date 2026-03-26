@@ -64,48 +64,27 @@
           <p class="section-subtitle">Berbagai layanan tersedia secara gratis untuk jamaah dan masyarakat di sekitar Masjid Al Aqobah 7.</p>
         </div>
 
-        <!-- Container Utama (Class berita-full-grid untuk styling seragam) -->
-        <div class="berita-full-grid" id="layananFullGrid" role="list" aria-label="Daftar layanan masjid">
+        <!-- Container Utama (Class layanan-grid untuk styling seragam dengan Beranda) -->
+        <div class="layanan-grid" id="layananFullGrid" role="list" aria-label="Daftar layanan masjid">
 
           <!-- Static fallback cards (akan digantikan JS jika ada data admin) -->
-          <article class="berita-card reveal" role="listitem">
-            <div class="berita-thumb">
-              <div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
-                <i class="fa-solid fa-bowl-rice" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
-              </div>
-              <span class="berita-badge">Layanan</span>
-            </div>
-            <div class="berita-body">
-              <h3 style="margin-bottom:0.5rem;">Bank Beras "1 Hari 1 Canting"</h3>
-              <p>Program pemberdayaan sosial inovatif dengan mengumpulkan beras dari jamaah untuk didistribusikan kepada keluarga kurang mampu secara rutin.</p>
-            </div>
-          </article>
+          <div class="layanan-card reveal" role="listitem">
+            <div class="layanan-icon"><i class="fa-solid fa-bowl-rice" aria-hidden="true"></i></div>
+            <h3>Bank Beras 1 Canting</h3>
+            <p>Program "1 Hari 1 Canting" untuk mengumpulkan dan mendistribusikan beras kepada keluarga yang membutuhkan di sekitar masjid.</p>
+          </div>
 
-          <article class="berita-card reveal" role="listitem">
-            <div class="berita-thumb">
-              <div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
-                <i class="fa-solid fa-leaf" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
-              </div>
-              <span class="berita-badge">Layanan</span>
-            </div>
-            <div class="berita-body">
-              <h3 style="margin-bottom:0.5rem;">Berbagi Sayur Gratis</h3>
-              <p>Program sosial mingguan berbagi puluhan paket sayuran segar gratis untuk jamaah dan masyarakat sekitar demi memenuhi kebutuhan gizi dapur keluarga.</p>
-            </div>
-          </article>
+          <div class="layanan-card reveal reveal-delay-1" role="listitem">
+            <div class="layanan-icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
+            <h3>Berbagi Sayur Gratis</h3>
+            <p>Program sosial mingguan berbagi sayuran segar secara gratis untuk membantu meringankan kebutuhan dapur masyarakat.</p>
+          </div>
 
-          <article class="berita-card reveal" role="listitem">
-            <div class="berita-thumb">
-              <div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
-                <i class="fa-solid fa-motorcycle" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
-              </div>
-              <span class="berita-badge">Layanan</span>
-            </div>
-            <div class="berita-body">
-              <h3 style="margin-bottom:0.5rem;">Cuci Motor Bayar Seikhlasnya</h3>
-              <p>Fasilitas cuci motor di area masjid dengan sistem bayar seutuhnya secara seikhlasnya. Program ini sekaligus menjadi wadah pemberdayaan ekonomi jamaah yang mengelola.</p>
-            </div>
-          </article>
+          <div class="layanan-card reveal reveal-delay-2" role="listitem">
+            <div class="layanan-icon"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i></div>
+            <h3>Cuci Motor Seikhlasnya</h3>
+            <p>Layanan cuci motor inovatif di area masjid dengan sistem bayar seikhlasnya, sekaligus wadah pemberdayaan jamaah.</p>
+          </div>
 
         </div>
       </div>

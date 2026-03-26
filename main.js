@@ -613,26 +613,16 @@ async function loadDynamicData() {
                 };
                 // Replace ALL content (including static fallback cards)
                 pageGrid.innerHTML = activeLayanan.map((l, i) => {
-                    const iconClass = faIconMap[l.icon] || 'fa-star';
+                    const iconClass = faIconMap[l.icon] || 'fa-hand-holding-heart';
                     const delay = (i % 3) + 1;
-                    const hasImg = l.images && l.images.length > 0;
-                    const thumb = hasImg ? l.images[0] : null;
+                    const hasDetail = !!(l.deskripsi_lengkap || (l.images && l.images.length > 0));
                     return `
-                    <article class="berita-card reveal reveal-delay-${delay} clickable" data-layanan-id="${l.id}" role="listitem">
-                      <div class="berita-thumb">
-                        ${thumb
-                          ? `<img src="${thumb}" alt="${escapeHtml(l.judul)}" style="width:100%;height:100%;object-fit:cover;">`
-                          : `<div style="background:var(--primary-gradient);height:100%;display:flex;align-items:center;justify-content:center">
-                              <i class="fa-solid ${iconClass}" style="font-size:3rem;color:var(--gold)" aria-hidden="true"></i>
-                             </div>`}
-                        <span class="berita-badge">Layanan</span>
-                      </div>
-                      <div class="berita-body">
-                        <h3 style="margin-bottom:0.5rem;">${escapeHtml(l.judul || l.nama || '')}</h3>
-                        <p>${escapeHtml(l.deskripsi_singkat || l.deskripsi || '')}</p>
-                        <a href="javascript:void(0)" class="berita-read">Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i></a>
-                      </div>
-                    </article>`;
+                    <div class="layanan-card reveal reveal-delay-${delay}${hasDetail ? ' clickable' : ''}" data-layanan-id="${l.id}" style="cursor:${hasDetail ? 'pointer' : 'default'}">
+                      <div class="layanan-icon"><i class="fa-solid ${iconClass}" aria-hidden="true"></i></div>
+                      <h3>${escapeHtml(l.judul || l.nama || '')}</h3>
+                      <p>${escapeHtml(l.deskripsi_singkat || l.deskripsi || '')}</p>
+                      ${hasDetail ? '<p style="font-size:0.78rem;color:var(--gold);margin-top:0.5rem;font-weight:600;"><i class="fa-solid fa-circle-info"></i> Klik untuk detail</p>' : ''}
+                    </div>`;
                 }).join('');
                 pageGrid.querySelectorAll('[data-layanan-id]').forEach(card => {
                     card.addEventListener('click', () => {
