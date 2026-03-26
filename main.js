@@ -605,37 +605,95 @@ async function loadDynamicData() {
                 });
                 indexContainer.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
             }
-        } else {
+        } else if (isLayanan) {
             // ---- layanan.html full page ----
             const pageGrid = document.getElementById('layananFullGrid');
-            if (pageGrid && activeLayanan.length > 0) {
+            if (pageGrid) {
+                // Remove loader
+                const loader = document.getElementById('layananLoader');
+                if (loader) loader.remove();
+
+                if (activeLayanan.length === 0) {
+                    pageGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-muted);">
+                        <i class="fa-solid fa-box-open" style="font-size:3rem; opacity:0.3; display:block; margin-bottom:1rem;"></i>
+                        <p style="font-size:1.1rem; font-weight:600;">Layanan Belum Tersedia</p>
+                        <p style="font-size:0.9rem; margin-top:0.5rem;">Admin belum menambahkan layanan. Silakan cek kembali nanti.</p>
+                    </div>`;
+                    return;
+                }
+
                 const faIconMap = {
                     'wheat': 'fa-bowl-rice', 'carrot': 'fa-leaf', 'bike': 'fa-motorcycle',
                     'heart-handshake': 'fa-hand-holding-heart', 'book-open': 'fa-book-open-reader',
-                    'cross': 'fa-plus-square'
+                    'cross': 'fa-plus-square', 'users': 'fa-people-group', 'child': 'fa-child',
+                    'motorcycle': 'fa-motorcycle', 'star': 'fa-star', 'mosque': 'fa-mosque'
                 };
-                // Replace ALL content (including static fallback cards)
+
                 pageGrid.innerHTML = activeLayanan.map((l, i) => {
                     const iconClass = faIconMap[l.icon] || 'fa-hand-holding-heart';
                     const delay = (i % 3) + 1;
-                    const hasDetail = !!(l.deskripsi_lengkap || (l.images && l.images.length > 0));
+                    const hasImg = l.images && l.images.length > 0;
+                    const thumb = hasImg ? l.images[0] : null;
+                    const hasDetail = !!(l.deskripsi_lengkap || l.tujuan || l.manfaat || hasImg);
+                    const shortDesc = l.deskripsi_singkat || l.deskripsi || '';
                     return `
-                    <div class="layanan-card reveal reveal-delay-${delay}${hasDetail ? ' clickable' : ''}" data-layanan-id="${l.id}" style="cursor:${hasDetail ? 'pointer' : 'default'}">
-                      <div class="layanan-icon"><i class="fa-solid ${iconClass}" aria-hidden="true"></i></div>
+                    <article class="layanan-full-card reveal reveal-delay-${delay}" data-layanan-id="${l.id}" role="listitem"
+                             style="cursor:${hasDetail ? 'pointer' : 'default'}">
+                      ${hasImg ? `
+                      <div style="width:100%; aspect-ratio:16/9; border-radius:var(--radius-sm); overflow:hidden; margin-bottom:1.25rem;">
+                        <img src="${thumb}" alt="${escapeHtml(l.judul || '')}" loading="lazy"
+                             style="width:100%;height:100%;object-fit:cover; transition: transform 0.4s ease;"
+                             onerror="this.parentElement.style.display='none'">
+                      </div>` : ''}
+                      <div class="layanan-full-icon">
+                        <i class="fa-solid ${iconClass}" aria-hidden="true"></i>
+                      </div>
                       <h3>${escapeHtml(l.judul || l.nama || '')}</h3>
-                      <p>${escapeHtml(l.deskripsi_singkat || l.deskripsi || '')}</p>
-                      ${hasDetail ? '<p style="font-size:0.78rem;color:var(--gold);margin-top:0.5rem;font-weight:600;"><i class="fa-solid fa-circle-info"></i> Klik untuk detail</p>' : ''}
-                    </div>`;
+                      ${shortDesc ? `<p>${escapeHtml(shortDesc)}</p>` : ''}
+                      ${hasDetail ? `<a href="javascript:void(0)" class="layanan-cta-link">
+                        Lihat Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                      </a>` : ''}
+                    </article>`;
                 }).join('');
+
+                // Bind click for rich detail modal
                 pageGrid.querySelectorAll('[data-layanan-id]').forEach(card => {
                     card.addEventListener('click', () => {
                         const id = card.dataset.layananId;
                         const item = layanan.find(l => String(l.id) === String(id));
                         if (!item) return;
+
+                        // Build modal body with all available detail
+                        const imgArr = item.images || [];
+                        let modalIsi = '';
+
+                        // Image carousel (if multiple)
+                        if (imgArr.length > 1) {
+                            modalIsi += `<div style="display:flex;gap:0.5rem;overflow-x:auto;padding-bottom:0.5rem;margin-bottom:1.25rem;">`;
+                            imgArr.forEach(src => {
+                                modalIsi += `<img src="${src}" style="flex-shrink:0;width:200px;height:130px;object-fit:cover;border-radius:8px;" loading="lazy">`;
+                            });
+                            modalIsi += `</div>`;
+                        }
+
+                        // Full description
+                        if (item.deskripsi_lengkap) {
+                            modalIsi += item.deskripsi_lengkap;
+                        } else if (item.deskripsi_singkat || item.deskripsi) {
+                            modalIsi += `<p>${escapeHtml(item.deskripsi_singkat || item.deskripsi)}</p>`;
+                        }
+
+                        // Extra info sections
+                        if (item.tujuan) modalIsi += `<h4 style="margin:1rem 0 0.4rem;color:var(--green-800);"><i class="fa-solid fa-bullseye" style="color:var(--gold)"></i> Tujuan</h4><p>${escapeHtml(item.tujuan)}</p>`;
+                        if (item.manfaat) modalIsi += `<h4 style="margin:1rem 0 0.4rem;color:var(--green-800);"><i class="fa-solid fa-star" style="color:var(--gold)"></i> Manfaat</h4><p>${escapeHtml(item.manfaat)}</p>`;
+                        if (item.cara_ikut) modalIsi += `<h4 style="margin:1rem 0 0.4rem;color:var(--green-800);"><i class="fa-solid fa-hand-point-right" style="color:var(--gold)"></i> Cara Ikut</h4><p>${escapeHtml(item.cara_ikut)}</p>`;
+
                         openContentModal({
-                            judul: item.judul || item.nama || '', badge: 'Layanan',
-                            isi: item.deskripsi_lengkap || `<p>${escapeHtml(item.deskripsi_singkat || item.deskripsi || '')}</p>`,
-                            foto: item.images || [], logo: item.logo || null
+                            judul: item.judul || item.nama || '',
+                            badge: 'Layanan',
+                            isi: modalIsi || `<p>${escapeHtml(item.deskripsi_singkat || item.deskripsi || 'Tidak ada deskripsi lengkap.')}</p>`,
+                            foto: imgArr.length === 1 ? imgArr : [],
+                            logo: item.logo || null
                         });
                     });
                 });

@@ -64,28 +64,13 @@
           <p class="section-subtitle">Berbagai layanan tersedia secara gratis untuk jamaah dan masyarakat di sekitar Masjid Al Aqobah 7.</p>
         </div>
 
-        <!-- Container Utama (Class layanan-grid untuk styling seragam dengan Beranda) -->
-        <div class="layanan-grid" id="layananFullGrid" role="list" aria-label="Daftar layanan masjid">
-
-          <!-- Static fallback cards (akan digantikan JS jika ada data admin) -->
-          <div class="layanan-card reveal" role="listitem">
-            <div class="layanan-icon"><i class="fa-solid fa-bowl-rice" aria-hidden="true"></i></div>
-            <h3>Bank Beras 1 Canting</h3>
-            <p>Program "1 Hari 1 Canting" untuk mengumpulkan dan mendistribusikan beras kepada keluarga yang membutuhkan di sekitar masjid.</p>
+        <!-- Container Utama: injected by main.js from layanan_masyarakat table -->
+        <div class="layanan-full-grid" id="layananFullGrid" role="list" aria-label="Daftar layanan masjid">
+          <!-- Loading indicator -->
+          <div id="layananLoader" style="grid-column:1/-1; text-align:center; padding:3rem;">
+            <i class="fa-solid fa-spinner fa-spin fa-2x" style="color:var(--green-700)"></i>
+            <p style="margin-top:0.75rem; color:var(--text-muted);">Memuat layanan...</p>
           </div>
-
-          <div class="layanan-card reveal reveal-delay-1" role="listitem">
-            <div class="layanan-icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
-            <h3>Berbagi Sayur Gratis</h3>
-            <p>Program sosial mingguan berbagi sayuran segar secara gratis untuk membantu meringankan kebutuhan dapur masyarakat.</p>
-          </div>
-
-          <div class="layanan-card reveal reveal-delay-2" role="listitem">
-            <div class="layanan-icon"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i></div>
-            <h3>Cuci Motor Seikhlasnya</h3>
-            <p>Layanan cuci motor inovatif di area masjid dengan sistem bayar seikhlasnya, sekaligus wadah pemberdayaan jamaah.</p>
-          </div>
-
         </div>
       </div>
     </section>
