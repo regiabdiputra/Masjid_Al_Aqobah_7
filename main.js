@@ -459,6 +459,9 @@ async function renderKegiatanSlider() {
 
 async function loadDynamicData() {
     const isIndex = document.querySelector('.hero') !== null;
+    const isLayanan = window.location.pathname.includes('layanan');
+    const isBerita = window.location.pathname.includes('berita');
+    const isKegiatan = window.location.pathname.includes('kegiatan');
     
     // 1. Pengaturan Umum (Global)
     const pengaturan = await SupaDB.fetchConfig('pengaturan_umum');
@@ -647,7 +650,7 @@ async function loadDynamicData() {
     
     const beritaContainer = isIndex
         ? (document.getElementById('beritaGrid') || document.querySelector('.berita-grid'))
-        : document.querySelector('.berita-full-grid');
+        : (isBerita ? document.querySelector('.berita-full-grid') : null);
 
     if (beritaContainer) {
         if (berita && berita.length > 0) {
