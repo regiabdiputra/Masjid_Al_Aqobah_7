@@ -15,19 +15,38 @@ function formatRupiah(angka) {
 
 // Merender Daftar Program Donasi
 async function renderDonasiPrograms() {
+    const grid = document.getElementById("donasiGrid");
+    if (!grid) return;
+
     let programs = [];
     try {
         programs = await SupaDB.fetchAll('donasi_programs');
-        // Filter out inactive programs if needed (assuming `aktif` column exists)
-        programs = programs.filter(p => p.aktif !== false);
+        console.log('[Donasi] Raw data dari Supabase:', programs);
+        
+        // Filter: hanya tampilkan yang aktif
+        // Support kedua format: kolom 'aktif' (boolean) atau 'status' (text)
+        programs = programs.filter(p => {
+            if (p.aktif === false) return false;      // kolom aktif = false → sembunyikan
+            if (p.status === 'inactive') return false; // kolom status = 'inactive' → sembunyikan
+            return true;                               // default tampilkan
+        });
+        
+        console.log('[Donasi] Setelah filter aktif:', programs.length, 'program');
     } catch(err) {
-        console.error("Gagal memuat program donasi:", err);
+        console.error("[Donasi] Gagal memuat program donasi:", err);
+        grid.innerHTML = `
+            <div style="grid-column:1/-1; text-align:center; padding:40px; color:#666;">
+                <i class="fa-solid fa-triangle-exclamation fa-3x" style="color:#e67e22; margin-bottom:16px;"></i>
+                <p style="margin:0; font-size:1.1rem; font-weight:600;">Gagal memuat program donasi</p>
+                <p style="margin-top:8px; font-size:0.9rem;">${err.message}</p>
+                <button onclick="renderDonasiPrograms()" style="margin-top:1rem; padding:0.5rem 1.5rem; border:2px solid var(--green-700); background:transparent; color:var(--green-700); border-radius:8px; cursor:pointer; font-weight:600;">
+                    <i class="fa-solid fa-rotate-right"></i> Coba Lagi
+                </button>
+            </div>
+        `;
+        return;
     }
 
-    const grid = document.getElementById("donasiGrid");
-    
-    if (!grid) return;
-    
     grid.innerHTML = '';
 
     if (programs.length === 0) {
