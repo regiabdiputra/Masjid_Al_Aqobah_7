@@ -3,36 +3,10 @@
  * Menangani logika program donasi, checkout, dan penyimpanan transaksi.
  */
 
-// Inisialisasi dengan full debug — error tampil langsung di halaman
+// Inisialisasi — robust: works even if DOMContentLoaded already fired
 (function initDonasi() {
     function run() {
-        const grid = document.getElementById("donasiGrid");
-        
-        // Debug Step 1: Grid ditemukan?
-        if (!grid) {
-            console.error('[DONASI] Grid #donasiGrid TIDAK ditemukan!');
-            return;
-        }
-        
-        // Debug Step 2: Tampilkan loading
-        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:#C8A951;font-weight:600;font-size:1.1rem;"><i class="fa-solid fa-spinner fa-spin"></i> Memuat program donasi...</div>';
-        
-        // Debug Step 3: Cek apakah SupaDB tersedia
-        if (typeof SupaDB === 'undefined') {
-            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:#ff4444;font-weight:700;font-size:1.1rem;background:rgba(255,0,0,0.1);border-radius:12px;border:2px solid #ff4444;">❌ ERROR: SupaDB tidak tersedia.<br><small style="font-weight:400;">File supabase-db.js mungkin gagal dimuat.</small></div>';
-            return;
-        }
-        
-        // Debug Step 4: Cek apakah Supabase client tersedia
-        if (!window._supabase) {
-            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:#ff4444;font-weight:700;font-size:1.1rem;background:rgba(255,0,0,0.1);border-radius:12px;border:2px solid #ff4444;">❌ ERROR: Supabase client belum terhubung.<br><small style="font-weight:400;">Cek API Key di js/supabase.js</small></div>';
-            return;
-        }
-        
-        // Debug Step 5: Jalankan render
-        renderDonasiPrograms().catch(err => {
-            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:#ff4444;font-weight:700;font-size:1.1rem;background:rgba(255,0,0,0.1);border-radius:12px;border:2px solid #ff4444;">❌ CRASH: ' + err.message + '<br><small style="font-weight:400;">' + err.stack + '</small></div>';
-        });
+        renderDonasiPrograms();
     }
 
     if (document.readyState === 'loading') {
@@ -101,7 +75,9 @@ async function renderDonasiPrograms() {
         if (isNaN(percentage) || !isFinite(percentage)) percentage = 0;
 
         const card = document.createElement("div");
-        card.className = "donasi-card reveal";
+        card.className = "donasi-card";
+        card.style.opacity = "1";
+        card.style.transform = "none";
         card.innerHTML = `
             <div class="donasi-poster">
                 <img src="${prog.poster || 'assets/donasi-default.jpg'}" alt="${prog.title}" onerror="this.src='assets/donasi1.jpg'">
