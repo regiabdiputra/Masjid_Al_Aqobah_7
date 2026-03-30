@@ -3,10 +3,23 @@
  * Menangani logika program donasi, checkout, dan penyimpanan transaksi.
  */
 
-// Inisialisasi Data Saat Halaman Dimuat
-document.addEventListener("DOMContentLoaded", async () => {
-    await renderDonasiPrograms();
-});
+// Inisialisasi Data — robust: works even if DOMContentLoaded already fired
+(function initDonasi() {
+    function run() {
+        const grid = document.getElementById("donasiGrid");
+        if (grid) {
+            grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gold,#C8A951);font-weight:600;"><i class="fa-solid fa-spinner fa-spin"></i> Memuat program donasi dari server...</p>';
+        }
+        renderDonasiPrograms();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener("DOMContentLoaded", run);
+    } else {
+        // DOM already loaded, run immediately
+        run();
+    }
+})();
 
 // Format Rupiah
 function formatRupiah(angka) {
