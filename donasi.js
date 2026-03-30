@@ -3,20 +3,41 @@
  * Menangani logika program donasi, checkout, dan penyimpanan transaksi.
  */
 
-// Inisialisasi Data — robust: works even if DOMContentLoaded already fired
+// Inisialisasi dengan full debug — error tampil langsung di halaman
 (function initDonasi() {
     function run() {
         const grid = document.getElementById("donasiGrid");
-        if (grid) {
-            grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gold,#C8A951);font-weight:600;"><i class="fa-solid fa-spinner fa-spin"></i> Memuat program donasi dari server...</p>';
+        
+        // Debug Step 1: Grid ditemukan?
+        if (!grid) {
+            console.error('[DONASI] Grid #donasiGrid TIDAK ditemukan!');
+            return;
         }
-        renderDonasiPrograms();
+        
+        // Debug Step 2: Tampilkan loading
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:#C8A951;font-weight:600;font-size:1.1rem;"><i class="fa-solid fa-spinner fa-spin"></i> Memuat program donasi...</div>';
+        
+        // Debug Step 3: Cek apakah SupaDB tersedia
+        if (typeof SupaDB === 'undefined') {
+            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:#ff4444;font-weight:700;font-size:1.1rem;background:rgba(255,0,0,0.1);border-radius:12px;border:2px solid #ff4444;">❌ ERROR: SupaDB tidak tersedia.<br><small style="font-weight:400;">File supabase-db.js mungkin gagal dimuat.</small></div>';
+            return;
+        }
+        
+        // Debug Step 4: Cek apakah Supabase client tersedia
+        if (!window._supabase) {
+            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:#ff4444;font-weight:700;font-size:1.1rem;background:rgba(255,0,0,0.1);border-radius:12px;border:2px solid #ff4444;">❌ ERROR: Supabase client belum terhubung.<br><small style="font-weight:400;">Cek API Key di js/supabase.js</small></div>';
+            return;
+        }
+        
+        // Debug Step 5: Jalankan render
+        renderDonasiPrograms().catch(err => {
+            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:#ff4444;font-weight:700;font-size:1.1rem;background:rgba(255,0,0,0.1);border-radius:12px;border:2px solid #ff4444;">❌ CRASH: ' + err.message + '<br><small style="font-weight:400;">' + err.stack + '</small></div>';
+        });
     }
 
     if (document.readyState === 'loading') {
         document.addEventListener("DOMContentLoaded", run);
     } else {
-        // DOM already loaded, run immediately
         run();
     }
 })();
