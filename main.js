@@ -845,6 +845,37 @@ async function loadDynamicData() {
         }
     }
 
+    // 4b. Jadwal Kegiatan Rutin (Dynamic from admin via site_config)
+    const jadwalGrid = document.getElementById('jadwalRutinGrid');
+    if (jadwalGrid) {
+        // Default jadwal if admin hasn't set any
+        const defaultJadwal = [
+            { hari: 'Senin – Jumat', nama: 'TPA & Tahfiz Anak', waktu: '15:30 – 17:00 WIB', lokasi: 'Ruang Kelas TPA' },
+            { hari: 'Selasa & Kamis', nama: 'Kajian Kitab Kuning', waktu: '20:00 – 21:30 WIB', lokasi: 'Aula Utama Masjid' },
+            { hari: 'Rabu', nama: 'Bank Beras 1 Canting', waktu: '09:00 – 11:00 WIB', lokasi: 'Aula Lantai 2' },
+            { hari: 'Kamis Malam', nama: 'Pengajian Yasin & Tahlil', waktu: '20:00 – 21:00 WIB', lokasi: 'Aula Utama Masjid' },
+            { hari: 'Jumat', nama: 'Kajian Ahad Subuh', waktu: '05:00 – 06:30 WIB', lokasi: 'Aula Utama Masjid' },
+            { hari: 'Sabtu', nama: 'Kajian Remaja GEMMA', waktu: '16:00 – 17:30 WIB', lokasi: 'Ruang Serba Guna' }
+        ];
+
+        let jadwalData = defaultJadwal;
+        try {
+            const config = await SupaDB.fetchConfig('jadwal_rutin');
+            if (config && config.items && config.items.length > 0) {
+                jadwalData = config.items;
+            }
+        } catch(e) { console.warn('[Jadwal] Gagal load dari Supabase, pakai default:', e); }
+
+        jadwalGrid.innerHTML = jadwalData.map((j, i) => `
+            <div class="jadwal-rutin-card${i % 2 === 1 ? ' even' : ''}" style="opacity:1;transform:none;">
+                <div class="jadwal-hari">${escapeHtml(j.hari)}</div>
+                <div class="jadwal-nama">${escapeHtml(j.nama)}</div>
+                <div class="jadwal-waktu"><i class="fa-regular fa-clock"></i> ${escapeHtml(j.waktu)}</div>
+                <div class="jadwal-lokasi"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(j.lokasi)}</div>
+            </div>
+        `).join('');
+    }
+
     // 5. Kegiatan
     let kegiatan = [];
     try { kegiatan = await SupaDB.fetchAll('kegiatan_masjid'); } catch(e){}

@@ -265,7 +265,8 @@ if (!window.location.pathname.includes('login')) {
             'kritik-saran': 'Inbox Kritik & Saran',
             'donasi-verifikasi': 'Verifikasi Transaksi Donasi',
             'donasi-program': 'Kelola Program Donasi',
-            'pengaturan': 'Pengaturan Umum'
+            'pengaturan': 'Pengaturan Umum',
+            'jadwal-rutin': 'Kelola Jadwal Rutin'
         };
 
         if (pageTitle) pageTitle.textContent = titles[page] || 'Dashboard';
@@ -283,6 +284,7 @@ if (!window.location.pathname.includes('login')) {
                     case 'layanan': await renderLayanan(); break;
                     case 'berita': await renderBerita(); break;
                     case 'kegiatan': await renderKegiatan(); break;
+                    case 'jadwal-rutin': await renderJadwalRutin(); break;
                     case 'komentar': await renderKomentar(); break;
                     case 'kritik-saran': await renderKritikSaran(); break;
                     case 'donasi-verifikasi': await renderDonasi('verifikasi'); break;
@@ -3005,3 +3007,160 @@ if (!window.location.pathname.includes('login')) {
     }
 }
 
+// ==========================================
+// RENDER JADWAL RUTIN
+// ==========================================
+async function renderJadwalRutin() {
+    const container = document.getElementById('contentContainer');
+    
+    // Default jadwal
+    const defaultJadwal = [
+        { hari: 'Senin – Jumat', nama: 'TPA & Tahfiz Anak', waktu: '15:30 – 17:00 WIB', lokasi: 'Ruang Kelas TPA' },
+        { hari: 'Selasa & Kamis', nama: 'Kajian Kitab Kuning', waktu: '20:00 – 21:30 WIB', lokasi: 'Aula Utama Masjid' },
+        { hari: 'Rabu', nama: 'Bank Beras 1 Canting', waktu: '09:00 – 11:00 WIB', lokasi: 'Aula Lantai 2' },
+        { hari: 'Kamis Malam', nama: 'Pengajian Yasin & Tahlil', waktu: '20:00 – 21:00 WIB', lokasi: 'Aula Utama Masjid' },
+        { hari: 'Jumat', nama: 'Kajian Ahad Subuh', waktu: '05:00 – 06:30 WIB', lokasi: 'Aula Utama Masjid' },
+        { hari: 'Sabtu', nama: 'Kajian Remaja GEMMA', waktu: '16:00 – 17:30 WIB', lokasi: 'Ruang Serba Guna' }
+    ];
+
+    let config = await SupaDB.fetchConfig('jadwal_rutin') || {};
+    let data = config.items || defaultJadwal;
+
+    let html = `
+        <div class="card">
+            <div class="card-header" style="justify-content: space-between;">
+                <div>
+                    <h4 class="card-title">Jadwal Kegiatan Rutin</h4>
+                    <p class="text-sm text-muted">Akan ditampilkan di halaman Kegiatan Masjid.</p>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="showJadwalRutinForm()"><i data-lucide="plus"></i> Tambah Jadwal</button>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table" style="min-width: 600px;">
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Nama Kegiatan</th>
+                            <th>Waktu</th>
+                            <th>Lokasi</th>
+                            <th align="center" width="120">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.length === 0 ? `<tr><td colspan="5" align="center" style="padding: 2rem; color: #666;">Belum ada jadwal rutin</td></tr>` : 
+                        data.map((item, i) => `
+                        <tr>
+                            <td><span class="badge" style="background:#e8f5e9;color:#2e7d32">${escapeHtml(item.hari)}</span></td>
+                            <td><strong>${escapeHtml(item.nama)}</strong></td>
+                            <td>${escapeHtml(item.waktu)}</td>
+                            <td>${escapeHtml(item.lokasi)}</td>
+                            <td align="center">
+                                <button class="btn-icon btn-sm text-primary" onclick="showJadwalRutinForm(${i})" title="Edit"><i data-lucide="edit-2"></i></button>
+                                <button class="btn-icon btn-sm text-danger" onclick="deleteJadwalRutin(${i})" title="Hapus"><i data-lucide="trash-2"></i></button>
+                            </td>
+                        </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+    lucide.createIcons({root: container});
+
+    // Global Functions for Jadwal Rutin
+    window.showJadwalRutinForm = (index = -1) => {
+        let item = index >= 0 ? data[index] : { hari: '', nama: '', waktu: '', lokasi: '' };
+        
+        const m = document.createElement('div');
+        m.className = 'modal active';
+        m.innerHTML = `
+            <div class="modal-dialog">
+                <div class="modal-header">
+                    <h3>${index >= 0 ? 'Edit Jadwal Rutin' : 'Tambah Jadwal Rutin'}</h3>
+                    <button class="btn-icon text-muted" onclick="this.closest('.modal').remove()"><i data-lucide="x"></i></button>
+                </div>
+                <div class="modal-body" style="padding: 20px;">
+                    <form id="jadwalRutinForm" onsubmit="saveJadwalRutin(event, ${index})">
+                        <div class="form-group">
+                            <label>Hari</label>
+                            <input type="text" class="form-control" id="j_hari" value="${escapeHtml(item.hari)}" required placeholder="Misal: Senin - Jumat atau Setiap Ahad">
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Kegiatan</label>
+                            <input type="text" class="form-control" id="j_nama" value="${escapeHtml(item.nama)}" required placeholder="Misal: Kajian Subuh">
+                        </div>
+                        <div class="form-group" style="display:grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <label>Waktu</label>
+                                <input type="text" class="form-control" id="j_waktu" value="${escapeHtml(item.waktu)}" required placeholder="Misal: 05:00 - 06:30 WIB">
+                            </div>
+                            <div>
+                                <label>Lokasi</label>
+                                <input type="text" class="form-control" id="j_lokasi" value="${escapeHtml(item.lokasi)}" required placeholder="Misal: Aula Utama">
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top: 20px;">
+                            <button type="button" class="btn btn-outline" onclick="this.closest('.modal').remove()">Batal</button>
+                            <button type="submit" class="btn btn-primary" id="btnSaveJadwal"><i data-lucide="save"></i> Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(m);
+        lucide.createIcons({root: m});
+    };
+
+    window.saveJadwalRutin = async (e, index) => {
+        e.preventDefault();
+        const btn = document.getElementById('btnSaveJadwal');
+        btn.disabled = true;
+        btn.innerHTML = 'Menyimpan...';
+
+        const newItem = {
+            hari: document.getElementById('j_hari').value,
+            nama: document.getElementById('j_nama').value,
+            waktu: document.getElementById('j_waktu').value,
+            lokasi: document.getElementById('j_lokasi').value
+        };
+
+        let newData = [...data];
+        if (index >= 0) {
+            newData[index] = newItem;
+        } else {
+            newData.push(newItem);
+        }
+
+        try {
+            await SupaDB.saveConfig('jadwal_rutin', { items: newData });
+            showToast('Jadwal rutin berhasil disimpan! ✅');
+            document.querySelector('.modal').remove();
+            loadPage('jadwal-rutin');
+        } catch (err) {
+            console.error(err);
+            showToast('Gagal menyimpan jadwal: ' + err.message, 'error');
+            btn.disabled = false;
+            btn.innerHTML = '<i data-lucide="save"></i> Simpan';
+        }
+    };
+
+    window.deleteJadwalRutin = async (index) => {
+        if (!confirm('Hapus jadwal rutin ini?')) return;
+        
+        let newData = [...data];
+        newData.splice(index, 1);
+        
+        try {
+            showToast('Menghapus...', 'info');
+            await SupaDB.saveConfig('jadwal_rutin', { items: newData });
+            showToast('Jadwal berhasil dihapus! ✅');
+            loadPage('jadwal-rutin');
+        } catch (err) {
+            console.error(err);
+            showToast('Gagal menghapus jadwal: ' + err.message, 'error');
+        }
+    };
+}
