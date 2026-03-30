@@ -3026,6 +3026,13 @@ async function renderJadwalRutin() {
     let config = await SupaDB.fetchConfig('jadwal_rutin') || {};
     let data = config.items || defaultJadwal;
 
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str).replace(/[&<>"']/g, function(m) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+        });
+    }
+
     let html = `
         <div class="card">
             <div class="card-header" style="justify-content: space-between;">
