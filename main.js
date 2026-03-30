@@ -867,10 +867,13 @@ async function loadDynamicData() {
         // --- Homepage kegiatan: card-grid style (same as kegiatan.html) ---
         const kegGrid = document.querySelector('.section[aria-labelledby="kegiatan-title"] #kegiatanTimeline, .section[aria-labelledby="kegiatan-title"] .kegiatan-timeline');
         if (kegGrid && kegiatan && kegiatan.length > 0) {
-            const upcoming = kegiatan.map(normKeg)
-                .filter(k => k.tampilkan && k.tanggal_mulai >= todayStr)
-                .sort((a, b) => new Date(a.tanggal_mulai) - new Date(b.tanggal_mulai))
-                .slice(0, 4);
+            // Show upcoming first, then recent — always show something
+            const allVisible = kegiatan.map(normKeg).filter(k => k.tampilkan);
+            const futureKeg = allVisible.filter(k => k.tanggal_mulai >= todayStr)
+                .sort((a, b) => new Date(a.tanggal_mulai) - new Date(b.tanggal_mulai));
+            const pastKeg = allVisible.filter(k => k.tanggal_mulai < todayStr)
+                .sort((a, b) => new Date(b.tanggal_mulai) - new Date(a.tanggal_mulai));
+            const upcoming = [...futureKeg, ...pastKeg].slice(0, 4);
 
             if (upcoming.length > 0) {
                 kegGrid.innerHTML = upcoming.map((k, i) => {
@@ -881,7 +884,7 @@ async function loadDynamicData() {
                     const hasImg = k.images && k.images.length > 0;
                     const thumb = hasImg ? k.images[0] : null;
                     return `
-                    <article class="berita-card reveal reveal-delay-${delay} clickable" data-kegiatan-id="${k.id}" role="listitem">
+                    <article class="berita-card visible clickable" data-kegiatan-id="${k.id}" role="listitem" style="opacity:1;transform:none;">
                       <div class="berita-thumb">
                         ${thumb
                           ? `<img src="${thumb}" alt="${escapeHtml(k.judul)}" style="width:100%;height:100%;object-fit:cover;">`
@@ -911,7 +914,7 @@ async function loadDynamicData() {
                             foto: item.images, logo: item.logo || null });
                     });
                 });
-                kegGrid.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+                // Cards already visible — no need for reveal observer
             }
         }
     } else {
@@ -932,7 +935,7 @@ async function loadDynamicData() {
                     const hasImg = k.images && k.images.length > 0;
                     const thumb = hasImg ? k.images[0] : null;
                     return `
-                    <article class="berita-card reveal reveal-delay-${delay} clickable" data-kegiatan-id="${k.id}" data-category="${k.kategori}" role="listitem">
+                    <article class="berita-card visible clickable" data-kegiatan-id="${k.id}" data-category="${k.kategori}" role="listitem" style="opacity:1;transform:none;">
                       <div class="berita-thumb">
                         ${thumb
                           ? `<img src="${thumb}" alt="${escapeHtml(k.judul)}" style="width:100%;height:100%;object-fit:cover;">`
@@ -964,7 +967,7 @@ async function loadDynamicData() {
                             foto: item.images, logo: item.logo || null });
                     });
                 });
-                kegFull.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+                // Cards already visible — no need for reveal observer
             }
         }
     }
