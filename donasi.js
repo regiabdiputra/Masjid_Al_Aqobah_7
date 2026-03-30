@@ -35,11 +35,11 @@ async function renderDonasiPrograms() {
     } catch(err) {
         console.error("[Donasi] Gagal memuat program donasi:", err);
         grid.innerHTML = `
-            <div style="grid-column:1/-1; text-align:center; padding:40px; color:#666;">
-                <i class="fa-solid fa-triangle-exclamation fa-3x" style="color:#e67e22; margin-bottom:16px;"></i>
+            <div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--text-body, #333);">
+                <i class="fa-solid fa-triangle-exclamation fa-3x" style="color:var(--gold, #e67e22); margin-bottom:16px; display:block;"></i>
                 <p style="margin:0; font-size:1.1rem; font-weight:600;">Gagal memuat program donasi</p>
-                <p style="margin-top:8px; font-size:0.9rem;">${err.message}</p>
-                <button onclick="renderDonasiPrograms()" style="margin-top:1rem; padding:0.5rem 1.5rem; border:2px solid var(--green-700); background:transparent; color:var(--green-700); border-radius:8px; cursor:pointer; font-weight:600;">
+                <p style="margin-top:8px; font-size:0.9rem; color:var(--text-muted, #888);">${err.message}</p>
+                <button onclick="renderDonasiPrograms()" style="margin-top:1rem; padding:0.5rem 1.5rem; border:2px solid var(--gold); background:var(--gold); color:#fff; border-radius:8px; cursor:pointer; font-weight:600;">
                     <i class="fa-solid fa-rotate-right"></i> Coba Lagi
                 </button>
             </div>
@@ -51,10 +51,10 @@ async function renderDonasiPrograms() {
 
     if (programs.length === 0) {
         grid.innerHTML = `
-            <div style="grid-column:1/-1; text-align:center; padding:40px; color:#666;">
-                <i class="fa-solid fa-box-open fa-3x" style="color:#ccc; margin-bottom:16px;"></i>
-                <p style="margin:0; font-size:1.1rem; font-weight:600;">Belum ada program donasi</p>
-                <p style="margin-top:8px; font-size:0.9rem;">Program donasi belum tersedia saat ini. Silakan cek kembali nanti.</p>
+            <div style="grid-column:1/-1; text-align:center; padding:50px 20px; color:var(--text-body, #333); background:rgba(255,255,255,0.05); border-radius:12px; border:1px dashed var(--gold, #C8A951);">
+                <i class="fa-solid fa-box-open fa-3x" style="color:var(--gold, #C8A951); margin-bottom:16px; display:block;"></i>
+                <p style="margin:0; font-size:1.2rem; font-weight:700; color:var(--gold, #C8A951);">Belum Ada Program Donasi</p>
+                <p style="margin-top:10px; font-size:0.95rem; color:var(--text-muted, #aaa);">Program donasi belum tersedia saat ini.<br>Silakan cek kembali nanti.</p>
             </div>
         `;
         return;
