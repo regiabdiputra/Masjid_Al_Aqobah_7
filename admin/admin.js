@@ -1047,13 +1047,13 @@ if (!window.location.pathname.includes('login')) {
         document.getElementById('btnCancelLayanan').addEventListener('click', hideForm);
 
         document.querySelectorAll('.btn-edit-layanan').forEach(btn => {
-            btn.addEventListener('click', (e) => showForm(e.currentTarget.getAttribute('data-id')));
+            btn.addEventListener('click', (e) => showForm(btn.getAttribute('data-id')));
         });
 
         document.querySelectorAll('.btn-hapus-layanan').forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 if (confirm('Apakah Anda yakin ingin menghapus layanan ini?')) {
-                    const id = e.currentTarget.getAttribute('data-id');
+                    const id = btn.getAttribute('data-id');
                     try {
                         await SupaDB.deleteItem('layanan_masyarakat', id);
                         showToast('Layanan berhasil dihapus');
@@ -1303,12 +1303,12 @@ if (!window.location.pathname.includes('login')) {
 
         function bindTableEvents() {
             document.querySelectorAll('.btn-edit-berita').forEach(btn => {
-                btn.onclick = (e) => showForm(e.currentTarget.getAttribute('data-id'));
+                btn.onclick = (e) => showForm(btn.getAttribute('data-id'));
             });
             document.querySelectorAll('.btn-hapus-berita').forEach(btn => {
                 btn.onclick = async (e) => {
                     if (confirm('Apakah Anda yakin ingin menghapus berita ini?')) {
-                        const id = e.currentTarget.getAttribute('data-id');
+                        const id = btn.getAttribute('data-id');
                         try {
                             await SupaDB.deleteItem('berita', id);
                             showToast('Berita berhasil dihapus');
@@ -1835,13 +1835,13 @@ if (!window.location.pathname.includes('login')) {
                 document.querySelectorAll('.btn-edit-keg').forEach(btn => {
                     btn.onclick = (e) => {
                         e.stopPropagation();
-                        showForm(e.currentTarget.getAttribute('data-id'));
+                        showForm(btn.getAttribute('data-id'));
                     };
                 });
                 document.querySelectorAll('.btn-hapus-keg').forEach(btn => {
                     btn.onclick = async (e) => {
                         if(confirm("Hapus kegiatan ini?")) {
-                            const id = e.currentTarget.getAttribute('data-id');
+                            const id = btn.getAttribute('data-id');
                             try {
                                 await SupaDB.deleteItem('kegiatan_masjid', id);
                                 showToast('Kegiatan dihapus');
@@ -2216,7 +2216,7 @@ if (!window.location.pathname.includes('login')) {
             if(btnExport) btnExport.onclick = () => exportToCSV(transactions);
 
             document.querySelectorAll('.btn-lihat-bukti').forEach(btn => {
-                btn.onclick = (e) => openModalBukti(e.currentTarget.getAttribute('data-id'));
+                btn.onclick = (e) => openModalBukti(btn.getAttribute('data-id'));
             });
 
             document.getElementById('btnCloseModalBukti').onclick = () => {
